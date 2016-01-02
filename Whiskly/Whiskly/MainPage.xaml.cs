@@ -25,6 +25,8 @@ namespace Whiskly
         public MainPage()
         {
             this.InitializeComponent();
+
+            MainFrame.Navigate(typeof(SplitView));
         }
     }
 }
