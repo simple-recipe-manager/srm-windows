@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="4d6ce45d-fda3-4407-92eb-9648cf9b83fc"
-    Publisher="CN=GeorgeH"
+    Name="ca3e4c0d-e064-4ccf-a734-0003d3ad431c"
+    Publisher="CN=georgeh"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="4d6ce45d-fda3-4407-92eb-9648cf9b83fc" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ca3e4c0d-e064-4ccf-a734-0003d3ad431c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Whiskly</DisplayName>
-    <PublisherDisplayName>GeorgeH</PublisherDisplayName>
+    <PublisherDisplayName>georgeh</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
