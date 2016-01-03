@@ -7,7 +7,76 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/SplitViewStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="HELP!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainNav.IsPaneOpen" Value="True"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <SplitView x:Name="MainNav">
+            <SplitView.Pane>
+                <Grid>
+                    <StackPanel>
+                        <!-- Private button -->
+                        <RadioButton x:Name="PrivateButton" Tag="&#57826;" Content="Private" Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="True" />
+
+                        <!-- Public button -->
+                        <RadioButton x:Name="PublicButton" Tag="&#59138;" Content="Public" Style="{StaticResource SplitViewNavButtonStyle}" />
+
+                        <!-- Family button -->
+                        <RadioButton x:Name="FamilyButton" Tag="&#59138;" Content="Family" Style="{StaticResource SplitViewNavButtonStyle}" />
+
+                        <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0"/>
+
+                        <!-- Family button -->
+                        <RadioButton x:Name="ShoppingButton" Tag="&#59138;" Content=" Shopping List" Style="{StaticResource SplitViewNavButtonStyle}" />
+
+                        <!-- Family button -->
+                        <RadioButton x:Name="DeviceButton" Tag="&#59138;" Content="Devices" Style="{StaticResource SplitViewNavButtonStyle}" />
+                    </StackPanel>
+
+                    <Grid VerticalAlignment="Bottom" Margin="0,0,0,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
+                        <Button Grid.Column="4" Content="&#xE710;" Tapped="New_Recipe_Onboarding" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
+                        <Button Grid.Column="5" Content="&#xE895;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
+                    </Grid>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame x:Name="MainContentFrame" />
+            </SplitView.Content>
+        </SplitView>
     </Grid>
 </Page>

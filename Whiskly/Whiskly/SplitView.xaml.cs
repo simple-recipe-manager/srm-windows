@@ -26,5 +26,10 @@ namespace Whiskly
         {
             this.InitializeComponent();
         }
+
+        private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Navigate(typeof(RecipeOnboarding));
+        }
     }
 }

@@ -8,6 +8,11 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+            <TextBox PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,40,25,0" BorderThickness="0,0,0,1" />
+            <TextBox PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" />
+            
+        </StackPanel>
     </Grid>
 </Page>
