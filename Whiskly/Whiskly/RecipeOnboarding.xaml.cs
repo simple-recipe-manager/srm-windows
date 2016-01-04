@@ -26,5 +26,10 @@ namespace Whiskly
         {
             this.InitializeComponent();
         }
+
+        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        {
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+        }
     }
 }

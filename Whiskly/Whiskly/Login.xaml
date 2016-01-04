@@ -52,7 +52,7 @@
             <Image Grid.ColumnSpan="3" Source="Assets/whiskly_web_header_1c.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25,0" />
 
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom">
-                <Grid Background="#BFFFFFFF">
+                <Grid Background="#BFFFFFFF" CornerRadius="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="3*" />

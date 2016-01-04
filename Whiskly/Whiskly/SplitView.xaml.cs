@@ -35,6 +35,7 @@ namespace Whiskly
         private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
         {
             MainContentFrame.Navigate(typeof(RecipeOnboarding));
+            SplitView.splitviewPage.MainNav.IsPaneOpen = false;
         }
 
         public Windows.UI.Xaml.Controls.SplitView getMenuPane()

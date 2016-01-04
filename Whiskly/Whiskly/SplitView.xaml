@@ -23,6 +23,8 @@
                         <AdaptiveTrigger MinWindowWidth="641" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="MainNav.DisplayMode" Value="Inline"/>
+                        <Setter Target="MainNav.OpenPaneLength" Value="250"/>
                         <Setter Target="MainNav.IsPaneOpen" Value="True"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -84,7 +86,7 @@
                 </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="MainContentFrame" />
+                <Frame x:Name="MainContentFrame" x:FieldModifier="public" />
             </SplitView.Content>
         </SplitView>
     </Grid>

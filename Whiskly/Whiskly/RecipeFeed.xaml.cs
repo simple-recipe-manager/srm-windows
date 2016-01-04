@@ -29,7 +29,6 @@ namespace Whiskly
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
     }
