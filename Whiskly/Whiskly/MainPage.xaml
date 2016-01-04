@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Frame x:Name="MainFrame" />
+        <Frame x:Name="MainFrame" x:FieldModifier="public" />
     </Grid>
 </Page>

@@ -34,27 +34,36 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        
-        <SplitView x:Name="MainNav">
+
+        <SplitView x:Name="MainNav" x:FieldModifier="public">
             <SplitView.Pane>
                 <Grid>
                     <StackPanel>
+                        <StackPanel Orientation="Horizontal" BorderThickness="15,40">
+                            <Ellipse Width="65" Height="65" >
+                                <Ellipse.Fill>
+                                    <ImageBrush Stretch="Fill" ImageSource="Assets/Facebook-20160103-044219.jpg"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="George" VerticalAlignment="Center" FontSize="22" Margin="20,0,0,0" />
+                        </StackPanel>
+                        
                         <!-- Private button -->
-                        <RadioButton x:Name="PrivateButton" Tag="&#57826;" Content="Private" Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="True" />
+                        <RadioButton x:Name="PrivateButton" Tag="&#xE77B;" Content="Private" Style="{StaticResource SplitViewNavButtonStyle}" IsChecked="True" />
 
                         <!-- Public button -->
-                        <RadioButton x:Name="PublicButton" Tag="&#59138;" Content="Public" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="PublicButton" Tag="&#xE774;" Content="Public" Style="{StaticResource SplitViewNavButtonStyle}" />
 
                         <!-- Family button -->
-                        <RadioButton x:Name="FamilyButton" Tag="&#59138;" Content="Family" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="FamilyButton" Tag="&#xE716;" Content="Family" Style="{StaticResource SplitViewNavButtonStyle}" />
 
                         <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0"/>
 
                         <!-- Family button -->
-                        <RadioButton x:Name="ShoppingButton" Tag="&#59138;" Content=" Shopping List" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="ShoppingButton" Tag="&#xE719;" Content=" Shopping List" Style="{StaticResource SplitViewNavButtonStyle}" />
 
                         <!-- Family button -->
-                        <RadioButton x:Name="DeviceButton" Tag="&#59138;" Content="Devices" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="DeviceButton" Tag="&#xE83B;" Content="Devices" Style="{StaticResource SplitViewNavButtonStyle}" />
                     </StackPanel>
 
                     <Grid VerticalAlignment="Bottom" Margin="0,0,0,15">
@@ -68,9 +77,9 @@
                             <ColumnDefinition Width=".5*" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="1" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
-                        <Button Grid.Column="4" Content="&#xE710;" Tapped="New_Recipe_Onboarding" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
-                        <Button Grid.Column="5" Content="&#xE895;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="32" HorizontalAlignment="Center" />
+                        <Button Grid.Column="1" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
+                        <Button Grid.Column="4" Content="&#xE710;" Tapped="New_Recipe_Onboarding" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
+                        <Button Grid.Column="5" Content="&#xE895;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
                     </Grid>
                 </Grid>
             </SplitView.Pane>

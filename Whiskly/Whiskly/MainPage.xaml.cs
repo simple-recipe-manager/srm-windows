@@ -22,11 +22,19 @@ namespace Whiskly
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static MainPage mainPage;
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            MainFrame.Navigate(typeof(SplitView));
+            MainFrame.Navigate(typeof(Login));
+            MainPage.mainPage = this;
+        }
+
+        public Frame getMainFrame()
+        {
+            return this.MainFrame;
         }
     }
 }

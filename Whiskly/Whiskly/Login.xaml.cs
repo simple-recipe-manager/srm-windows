@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,18 @@ namespace Whiskly
         public Login()
         {
             this.InitializeComponent();
+        }
+
+        private void Login_Combo_Click(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem cbi = (ComboBoxItem)Login_Combo.SelectedItem;
+            string selectedItem = cbi.Content.ToString();
+
+            if(selectedItem == "Email")
+            {
+                MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
+                Debug.WriteLine("Made it here!");
+            }
         }
     }
 }

@@ -18,7 +18,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <!--<PackageCertificateKeyFile>Whiskly_Key.pfx</PackageCertificateKeyFile>-->
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>86F14A9C13B15DCA4032B55430EDDA0EE6EA0F24</PackageCertificateThumbprint>
@@ -113,6 +113,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipeFeed.xaml.cs">
+      <DependentUpon>RecipeFeed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RecipeOnboarding.xaml.cs">
       <DependentUpon>RecipeOnboarding.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Facebook-20160103-044219.jpg" />
+    <Content Include="Assets\whiskly_login_app_background.jpg" />
+    <Content Include="Assets\whiskly_web_header_1c.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -147,6 +153,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RecipeFeed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecipeOnboarding.xaml">
       <SubType>Designer</SubType>

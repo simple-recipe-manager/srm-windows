@@ -20,26 +20,17 @@ namespace Whiskly
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SplitView : Page
+    public sealed partial class RecipeFeed : Page
     {
-        public static SplitView splitviewPage;
-
-        public SplitView()
+        public RecipeFeed()
         {
             this.InitializeComponent();
-
-            MainContentFrame.Navigate(typeof(RecipeFeed));
-            SplitView.splitviewPage = this;
         }
 
-        private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
+        private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Navigate(typeof(RecipeOnboarding));
-        }
-
-        public Windows.UI.Xaml.Controls.SplitView getMenuPane()
-        {
-            return this.MainNav;
+            MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
+            SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
     }
 }
