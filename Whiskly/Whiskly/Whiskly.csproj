@@ -129,7 +129,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Amazon-icon.png" />
     <Content Include="Assets\Facebook-20160103-044219.jpg" />
+    <Content Include="Assets\FB-f-Logo__white_512.png" />
     <Content Include="Assets\whiskly_login_app_background.jpg" />
     <Content Include="Assets\whiskly_web_header_1c.png" />
     <Content Include="Properties\Default.rd.xml" />
