@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,16 +29,19 @@ namespace Whiskly
             this.InitializeComponent();
         }
 
-        private void Login_Combo_Click(object sender, SelectionChangedEventArgs e)
+        private void Login_Amazon_Click(object sender, RoutedEventArgs e)
         {
-            ComboBoxItem cbi = (ComboBoxItem)Login_Combo.SelectedItem;
-            string selectedItem = cbi.Content.ToString();
+            MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
+        }
 
-            if(selectedItem == "Email")
-            {
-                MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
-                Debug.WriteLine("Made it here!");
-            }
+        private void Login_Facebook_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
+        }
+
+        private void Login_Guest_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
         }
     }
 }
