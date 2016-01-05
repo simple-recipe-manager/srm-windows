@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -34,6 +35,14 @@ namespace Whiskly
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundColor = Color.FromArgb(255, 38, 166, 154);
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundOpacity = 1;
             }
+
+            Email_Textbox_desktab.KeyDown += (sender, args) =>
+            {
+                if (args.Key == VirtualKey.Enter)
+                {
+                    Debug.WriteLine("FUUUUUCKCKKCKCKCK!");
+                }
+            };
         }
 
         private void Login_Amazon_Click(object sender, RoutedEventArgs e)
@@ -49,6 +58,24 @@ namespace Whiskly
         private void Login_Guest_Click(object sender, RoutedEventArgs e)
         {
             MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
+        }
+
+        private void Focus_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                Debug.WriteLine("Enter key is pressed.");
+                FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+            }
+        }
+
+        private void Submit_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                Debug.WriteLine("Submit Enter key is pressed.");
+                // Code that controls user password verification
+            }
         }
     }
 }

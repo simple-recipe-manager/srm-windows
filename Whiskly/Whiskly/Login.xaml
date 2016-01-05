@@ -40,8 +40,8 @@
             <Image Grid.Column="1" Source="Assets/whiskly_web_header_1c.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" />
 
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Background="White">
-                <TextBox x:Name="Email_Textbox_phone" BorderBrush="#FFDFDFDF" PlaceholderText="Email Address" Padding="10,5,10,7" Background="White" BorderThickness="0,0.5" IsSpellCheckEnabled="False"/>
-                <PasswordBox x:Name="Password_PasswordBox_phone" BorderBrush="#FFDFDFDF" PlaceholderText="Password" Padding="10,5,10,7" BorderThickness="0,0.5" />
+                <TextBox x:Name="Email_Textbox_phone" BorderBrush="#FFDFDFDF" PlaceholderText="Email Address" Padding="10,5,10,7" Background="White" BorderThickness="0,0.5" IsSpellCheckEnabled="False" KeyDown="Focus_KeyDown" />
+                <PasswordBox x:Name="Password_PasswordBox_phone" BorderBrush="#FFDFDFDF" PlaceholderText="Password" Padding="10,5,10,7" BorderThickness="0,0.5" KeyDown="Submit_KeyDown" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom">
                 <Button x:Name="Login_Facebook_phone" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF4C66A4" Margin="0,10,0,0" Click="Login_Facebook_Click">
@@ -69,8 +69,8 @@
             <Image Grid.Column="1" Source="Assets/whiskly_web_header_1c.png" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" />
 
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Background="White">
-                <TextBox x:Name="Email_Textbox_desktab" BorderBrush="#FFDFDFDF" PlaceholderText="Email Address" Padding="10,5,10,7" Background="White" BorderThickness="0,0.5" IsSpellCheckEnabled="False"/>
-                <PasswordBox x:Name="Password_PasswordBox_desktab" BorderBrush="#FFDFDFDF" PlaceholderText="Password" Padding="10,5,10,7" BorderThickness="0,0.5" />
+                <TextBox x:Name="Email_Textbox_desktab" BorderBrush="#FFDFDFDF" PlaceholderText="Email Address" Padding="10,5,10,7" Background="White" BorderThickness="0,0.5" IsSpellCheckEnabled="False" KeyDown="Focus_KeyDown"/>
+                <PasswordBox x:Name="Password_PasswordBox_desktab" BorderBrush="#FFDFDFDF" PlaceholderText="Password" Padding="10,5,10,7" BorderThickness="0,0.5" KeyDown="Submit_KeyDown" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom">
                 <Button x:Name="Login_Facebook_desktab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF4C66A4" Margin="0,10,0,0" Click="Login_Facebook_Click">
