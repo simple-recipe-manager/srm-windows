@@ -35,14 +35,6 @@ namespace Whiskly
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundColor = Color.FromArgb(255, 38, 166, 154);
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundOpacity = 1;
             }
-
-            Email_Textbox_desktab.KeyDown += (sender, args) =>
-            {
-                if (args.Key == VirtualKey.Enter)
-                {
-                    Debug.WriteLine("FUUUUUCKCKKCKCKCK!");
-                }
-            };
         }
 
         private void Login_Amazon_Click(object sender, RoutedEventArgs e)
