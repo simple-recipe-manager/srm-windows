@@ -31,5 +31,11 @@ namespace Whiskly
         {
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
+
+        private void Cancel_Desktab_Clicked(object sender, RoutedEventArgs e)
+        {
+            Cancel_Clicked(sender, e);
+            SplitView.splitviewPage.MainNav.IsPaneOpen = true;
+        }
     }
 }

@@ -63,7 +63,34 @@
         </Grid>
 
         <Grid x:Name="grid_desktab">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
+
+            <Rectangle Grid.Column="1" Grid.RowSpan="4" Width="300" Height="200" Fill="#FFF6C7C7" RadiusX="5" RadiusY="5" />
+
+            <Grid Grid.Column="1" Grid.Row="1" Background="#FFF3F3F3" CornerRadius="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" Tapped="MenuHamburger_Clicked">
+                    <Viewbox Margin="10">
+                        <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" Foreground="#FFB9B9B9" />
+                    </Viewbox>
+                </Grid>
+                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

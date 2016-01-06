@@ -8,27 +8,105 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel x:Name="Sample" Orientation="Vertical">
-            <TextBlock x:Name="NewRecipeHeader" Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
-            <TextBox x:Name="RecipeName_textBox" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
-            <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox, Mode=TwoWay}">
-                <ComboBoxItem>Food</ComboBoxItem>
-                <ComboBoxItem>More Food</ComboBoxItem>
-                <ComboBoxItem>Even More Food</ComboBoxItem>
-                <ComboBoxItem>Less Food</ComboBoxItem>
-                <ComboBoxItem>Abbas Amount</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <Grid VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
-                <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid_desktab.Visibility" Value="Visible"/>
+                        <Setter Target="grid_phone.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid_desktab.Visibility" Value="Collapsed"/>
+                        <Setter Target="grid_phone.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="grid_phone">
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="NewRecipeHeader" Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                <TextBox x:Name="RecipeName_textBox" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
+                <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox, Mode=TwoWay}">
+                    <ComboBoxItem>Food</ComboBoxItem>
+                    <ComboBoxItem>More Food</ComboBoxItem>
+                    <ComboBoxItem>Even More Food</ComboBoxItem>
+                    <ComboBoxItem>Abbas Amount</ComboBoxItem>
+                    <ComboBoxItem>Less Food</ComboBoxItem>
+                    <ComboBoxItem>Even Less Food</ComboBoxItem>
+                    <ComboBoxItem>George Amount</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <Grid VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
+                    <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" />
+                </Grid>
             </Grid>
-            <Grid Grid.Column="1">
-                <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" />
+        </Grid>
+
+        <Grid x:Name="grid_desktab">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                        <TextBox x:Name="RecipeName_textBox_desktab" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
+                        <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox_desktab, Mode=TwoWay}">
+                            <ComboBoxItem>Food</ComboBoxItem>
+                            <ComboBoxItem>More Food</ComboBoxItem>
+                            <ComboBoxItem>Even More Food</ComboBoxItem>
+                            <ComboBoxItem>Abbas Amount</ComboBoxItem>
+                            <ComboBoxItem>Less Food</ComboBoxItem>
+                            <ComboBoxItem>Even Less Food</ComboBoxItem>
+                            <ComboBoxItem>George Amount</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <Grid VerticalAlignment="Bottom">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
+                            <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Column="1" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
+                    
+                </Grid>
+
+                <Grid Grid.Column="2" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
+                    
+                </Grid>
+
+                <Grid Grid.Column="3">
+                    
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
