@@ -10,9 +10,9 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/TimePickerStyles.xaml"/>
-                <ResourceDictionary Source="Styles/TextBoxStyles.xaml"/>
-                <ResourceDictionary Source="Styles/TextBoxRightStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/TimePickerStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/TextBoxRightStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
