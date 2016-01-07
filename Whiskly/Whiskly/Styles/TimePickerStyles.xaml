@@ -156,13 +156,13 @@
                                     <TextBlock x:Name="HourTextBlock" TextAlignment="Center" Padding="0,3,0,5" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" AutomationProperties.AccessibilityView="Raw"/>
                                 </Border>
 
-                                <Rectangle x:Name="FirstColumnDivider" Fill="{ThemeResource SystemControlForegroundBaseLowBrush}" HorizontalAlignment="Center" Width="2" Grid.Column="1" />
+                                <Rectangle x:Name="FirstColumnDivider" Fill="{ThemeResource SystemControlForegroundBaseLowBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="1" />
 
                                 <Border x:Name="SecondPickerHost" Grid.Column="2">
                                     <TextBlock x:Name="MinuteTextBlock" TextAlignment="Center" Padding="0,3,0,5" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" AutomationProperties.AccessibilityView="Raw"/>
                                 </Border>
 
-                                <Rectangle x:Name="SecondColumnDivider" Fill="{ThemeResource SystemControlForegroundBaseLowBrush}" HorizontalAlignment="Center" Width="2" Grid.Column="3" />
+                                <Rectangle x:Name="SecondColumnDivider" Fill="{ThemeResource SystemControlForegroundBaseLowBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="3" />
 
                                 <Border x:Name="ThirdPickerHost" Grid.Column="4">
                                     <TextBlock x:Name="PeriodTextBlock" TextAlignment="Center" Padding="0,3,0,5" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" AutomationProperties.AccessibilityView="Raw"/>
