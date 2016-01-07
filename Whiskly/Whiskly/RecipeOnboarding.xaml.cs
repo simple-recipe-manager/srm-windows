@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -40,18 +41,44 @@ namespace Whiskly
 
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
         {
+            int stackpanelSize = this.IngredientsStackPanel.Children.Count;
 
-            i++
-            IngredientTextbox[i] = new TextBox();
-            IngredientTextbox[i].Placeholder = "Step " + i;
-            IngredientTextbox[i].Style = this.Resources["WhisklyTextbox"] as Style;
+            int currentTextbox = stackpanelSize + 1;
 
-            this.IngredientsStackPanel.Children.Add(IngredientTextbox[i]);
+            TextBox IngredientTextbox = new TextBox();
+            IngredientTextbox.Name = "Ingredient_" + currentTextbox;
+            IngredientTextbox.PlaceholderText = "Ingredient " + currentTextbox;
+            IngredientTextbox.Margin = new Thickness(0,10,0,0);
+
+            this.IngredientsStackPanel.Children.Add(IngredientTextbox);
         }
 
         private void Add_Direction_Click(object sender, RoutedEventArgs e)
         {
+            int stackpanelSize = this.DirectionsStackPanel.Children.Count;
 
+            int currentStackpanel = stackpanelSize + 1;
+
+            StackPanel DirectionInternalStackPanel = new StackPanel();
+            DirectionInternalStackPanel.Name = "DirectionInternalStackpanel_" + currentStackpanel;
+
+
+            TextBox StepTextbox = new TextBox();
+            StepTextbox.Name = "Step_" + currentStackpanel;
+            StepTextbox.Header = "Step " + currentStackpanel;
+            StepTextbox.PlaceholderText = "Step " + currentStackpanel;
+            StepTextbox.Margin = new Thickness(0, 20, 0, 0);
+
+            TextBox DirectionTextbox = new TextBox();
+            DirectionTextbox.Name = "Direction_" + currentStackpanel;
+            DirectionTextbox.PlaceholderText = "Directions for step " + currentStackpanel;
+            DirectionTextbox.Margin = new Thickness(0, 10, 0, 0);
+            DirectionTextbox.TextWrapping = TextWrapping.Wrap;
+
+            DirectionInternalStackPanel.Children.Add(StepTextbox);
+            DirectionInternalStackPanel.Children.Add(DirectionTextbox);
+
+            this.DirectionsStackPanel.Children.Add(DirectionInternalStackPanel);
         }
     }
 }
