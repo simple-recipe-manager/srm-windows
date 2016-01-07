@@ -26,5 +26,17 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         {
             this.InitializeComponent();
         }
+
+        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        {
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+        }
+
+        private void Next_Clicked(object sender, RoutedEventArgs e)
+        {
+            // Code to store values before continuing recipe onboarding process
+
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Ingredients));
+        }
     }
 }

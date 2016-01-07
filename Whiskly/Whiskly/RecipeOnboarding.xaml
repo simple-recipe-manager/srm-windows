@@ -42,31 +42,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <Grid x:Name="grid_phone">
-            <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="NewRecipeHeader" Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
-                <TextBox x:Name="RecipeName_textBox" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
-                <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox, Mode=TwoWay}">
-                    <ComboBoxItem>Food</ComboBoxItem>
-                    <ComboBoxItem>More Food</ComboBoxItem>
-                    <ComboBoxItem>Even More Food</ComboBoxItem>
-                    <ComboBoxItem>Abbas Amount</ComboBoxItem>
-                    <ComboBoxItem>Less Food</ComboBoxItem>
-                    <ComboBoxItem>Even Less Food</ComboBoxItem>
-                    <ComboBoxItem>George Amount</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <Grid VerticalAlignment="Bottom">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
-                    <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
-                </Grid>
-                <Grid Grid.Column="1">
-                    <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" />
-                </Grid>
-            </Grid>
+            <Frame x:Name="RO_Phone_Frame" x:FieldModifier="public" />
         </Grid>
 
         <Grid x:Name="grid_desktab">

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Whiskly.Pages.RecipeOnboarding_Phone;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,9 +24,14 @@ namespace Whiskly
     /// </summary>
     public sealed partial class RecipeOnboarding : Page
     {
+        public static RecipeOnboarding recipeOnboarding;
+
         public RecipeOnboarding()
         {
             this.InitializeComponent();
+
+            RO_Phone_Frame.Navigate(typeof(RO_Title));
+            RecipeOnboarding.recipeOnboarding = this;
         }
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e)
@@ -79,6 +85,11 @@ namespace Whiskly
             DirectionInternalStackPanel.Children.Add(DirectionTextbox);
 
             this.DirectionsStackPanel.Children.Add(DirectionInternalStackPanel);
+        }
+
+        public Frame getRO_Phone_Frame()
+        {
+            return this.RO_Phone_Frame;
         }
     }
 }
