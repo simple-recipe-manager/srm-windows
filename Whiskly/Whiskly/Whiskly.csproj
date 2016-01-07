@@ -112,6 +112,21 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Complete.xaml.cs">
+      <DependentUpon>RO_Complete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Directions.xaml.cs">
+      <DependentUpon>RO_Directions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Ingredients.xaml.cs">
+      <DependentUpon>RO_Ingredients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Prep.xaml.cs">
+      <DependentUpon>RO_Prep.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Title.xaml.cs">
+      <DependentUpon>RO_Title.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeFeed.xaml.cs">
       <DependentUpon>RecipeFeed.xaml</DependentUpon>
@@ -155,6 +170,26 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Complete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Directions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Ingredients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Prep.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Title.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecipeFeed.xaml">
       <SubType>Designer</SubType>
