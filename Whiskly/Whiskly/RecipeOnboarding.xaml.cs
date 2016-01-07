@@ -41,6 +41,12 @@ namespace Whiskly
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
         {
 
+            i++
+            IngredientTextbox[i] = new TextBox();
+            IngredientTextbox[i].Placeholder = "Step " + i;
+            IngredientTextbox[i].Style = this.Resources["WhisklyTextbox"] as Style;
+
+            this.IngredientsStackPanel.Children.Add(IngredientTextbox[i]);
         }
 
         private void Add_Direction_Click(object sender, RoutedEventArgs e)
