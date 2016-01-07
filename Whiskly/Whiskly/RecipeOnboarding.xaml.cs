@@ -37,5 +37,15 @@ namespace Whiskly
             Cancel_Clicked(sender, e);
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
+
+        private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add_Direction_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -7,6 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/TimePickerStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -70,7 +78,7 @@
 
                 <Grid Grid.Column="0" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                        <TextBlock Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFCDCDCD" TextWrapping="Wrap" />
                         <TextBox x:Name="RecipeName_textBox_desktab" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
                         <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox_desktab, Mode=TwoWay}">
                             <ComboBoxItem>Food</ComboBoxItem>
@@ -97,15 +105,90 @@
                 </Grid>
 
                 <Grid Grid.Column="1" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
-                    
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Ingredients" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                        <StackPanel x:Name="IngredientsStackPanel" Orientation="Vertical" Margin="25,25,25,0">
+                            <TextBox PlaceholderText="Ingredient" FontWeight="Thin" BorderThickness="0,0,0,1" />
+                        </StackPanel>
+                        <Button Click="Add_Ingredient_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,25,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
+                                    <TextBlock.RenderTransform>
+                                        <CompositeTransform Rotation="45"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <TextBlock Text="Add Ingredient" Margin="0,5,0,0" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <Grid Grid.Column="2" BorderThickness="0,0,0.5,0" BorderBrush="#FFDDDDDD">
-                    
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Directions" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                        <StackPanel x:Name="DirectionsStackPanel" Orientation="Vertical" Margin="25,25,25,0">
+                            <TextBox PlaceholderText="Step 1" FontWeight="Thin" BorderThickness="0,0,0,1" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Click="Add_Direction_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,25,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
+                                    <TextBlock.RenderTransform>
+                                        <CompositeTransform Rotation="45"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                                <TextBlock Text="Add Step" Margin="0,5,0,0" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <Grid Grid.Column="3">
-                    
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Preperation" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+
+                        <StackPanel x:Name="PreperationStackPanel" Orientation="Vertical" Margin="25,25,25,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".75*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="Yield (Servings):" FontWeight="Thin" />
+                                <TextBox Grid.Column="1" x:Name="YieldTextBox" PlaceholderText="1x" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" />
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".75*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="Prep Time:" FontWeight="Thin" />
+                                <Grid x:Name="grid" Grid.Column="1" />
+                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="1:1:0" />
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".75*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="Cook Time:" FontWeight="Thin" />
+                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="1:1:0" />
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".75*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="Preheat:" FontWeight="Thin" />
+                                <TextBox Grid.Column="1" PlaceholderText="Step 1" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" />
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>
