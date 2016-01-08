@@ -77,7 +77,7 @@
                             <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
                         </Grid>
                         <Grid Grid.Column="1">
-                            <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" />
+                            <TextBlock Padding="0,0,0,15" Text="Finish" FontSize="24" TextAlignment="Center" FontWeight="Thin" Foreground="#FF26A69A" Tapped="Finish_Clicked" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -139,7 +139,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Yield (Servings):" FontWeight="Thin" />
-                                <TextBox Grid.Column="1" x:Name="YieldTextBox" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" PlaceholderText="1x" Style="{StaticResource TextBox_RightAlign}" />
+                                <TextBox Grid.Column="1" x:Name="YieldTextBox" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" PlaceholderText="1x" Style="{StaticResource TextBox_RightAlign}" LostFocus="YieldTextBox_LostFocus" GotFocus="YieldTextBox_GotFocus" KeyDown="YieldTextBox_KeyDown" />
                             </Grid>
 
                             <Grid Margin="0,10,0,0">
@@ -150,7 +150,7 @@
 
                                 <TextBlock Grid.Column="0" Text="Prep Time:" FontWeight="Thin" />
                                 <Grid x:Name="grid" Grid.Column="1" />
-                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="1:1:0" />
+                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="0:0:0" />
                             </Grid>
 
                             <Grid Margin="0,10,0,0">
@@ -160,7 +160,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Cook Time:" FontWeight="Thin" />
-                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="1:1:0" />
+                                <TimePicker Grid.Column="1" ClockIdentifier="24HourClock" Width="{Binding ActualWidth, ElementName=grid, Mode=OneWay}" MinWidth="25" Time="0:0:0" />
                             </Grid>
 
                             <Grid Margin="0,10,0,0">
@@ -170,7 +170,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Column="0" Text="Preheat:" FontWeight="Thin" />
-                                <TextBox Grid.Column="1" PlaceholderText="°F" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" Style="{StaticResource TextBox_RightAlign}" />
+                                <TextBox Grid.Column="1" x:Name="TemperatureTextBox" PlaceholderText="°F" FontWeight="Thin" BorderThickness="0,0,0,1" TextAlignment="Right" Style="{StaticResource TextBox_RightAlign}" InputScope="Number" KeyDown="TemperatureTextBox_KeyDown" LostFocus="TemperatureTextBox_LostFocus" GotFocus="TemperatureTextBox_GotFocus" />
                             </Grid>
                         </StackPanel>
                     </StackPanel>

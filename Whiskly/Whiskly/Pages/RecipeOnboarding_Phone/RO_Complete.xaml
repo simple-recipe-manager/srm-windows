@@ -18,7 +18,12 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Let's&#10;Cook" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+            <TextBlock Text="That's it!" Margin="25,50,25,0" Foreground="#FF909090" FontSize="21.333" TextWrapping="Wrap" FontWeight="Thin" />
+            <TextBlock Text="You're all done and ready to turn up the heat." Margin="25,15,25,0" Foreground="#FF909090" FontSize="21.333" TextWrapping="Wrap" FontWeight="Thin" />
+            <TextBlock Text="Your recipe is now in your collection." Foreground="#FF26A69A" Margin="25,15,25,0" FontSize="21.333" TextWrapping="Wrap" FontWeight="Thin" />
+        </StackPanel>
 
         <Grid VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
@@ -29,7 +34,7 @@
                 <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
             </Grid>
             <Grid Grid.Column="1">
-                <TextBlock Padding="0,0,0,15" Text="Finish" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Next_Clicked" Foreground="#FF26A69A" />
+                <TextBlock Padding="0,0,0,15" Text="Finish" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Finish_Clicked" Foreground="#FF26A69A" />
             </Grid>
         </Grid>
     </Grid>

@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Whiskly.Pages.RecipeOnboarding_Phone;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,11 +38,12 @@ namespace Whiskly
         private void Cancel_Clicked(object sender, RoutedEventArgs e)
         {
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
-        private void Cancel_Desktab_Clicked(object sender, RoutedEventArgs e)
+        private void Finish_Clicked(object sender, RoutedEventArgs e)
         {
-            Cancel_Clicked(sender, e);
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
@@ -90,6 +92,56 @@ namespace Whiskly
         public Frame getRO_Phone_Frame()
         {
             return this.RO_Phone_Frame;
+        }
+
+        private void YieldTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(YieldTextBox.Text == "")
+            {
+                YieldTextBox.PlaceholderText = "1 x";
+            }
+            else
+            {
+                YieldTextBox.Text = YieldTextBox.Text + " x";
+            }
+        }
+
+        private void YieldTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            YieldTextBox.Text = "";
+        }
+
+        private void YieldTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (!(e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9) && !(e.Key >= VirtualKey.NumberPad0 && e.Key <= VirtualKey.NumberPad9))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TemperatureTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(TemperatureTextBox.Text == "")
+            {
+                TemperatureTextBox.PlaceholderText = "°F";
+            }
+            else
+            {
+                TemperatureTextBox.Text = TemperatureTextBox.Text + " °F";
+            }
+        }
+
+        private void TemperatureTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TemperatureTextBox.Text = "";
+        }
+
+        private void TemperatureTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (!(e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9) && !(e.Key >= VirtualKey.NumberPad0 && e.Key <= VirtualKey.NumberPad9))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

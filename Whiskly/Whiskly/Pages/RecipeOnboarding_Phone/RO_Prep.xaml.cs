@@ -39,5 +39,39 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
 
             RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Complete));
         }
+
+        private void YieldTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (YieldTextBox.Text == "")
+            {
+                YieldTextBox.PlaceholderText = "1 x";
+            }
+            else
+            {
+                YieldTextBox.Text = YieldTextBox.Text + " x";
+            }
+        }
+
+        private void YieldTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            YieldTextBox.Text = "";
+        }
+
+        private void TemperatureTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TemperatureTextBox.Text == "")
+            {
+                TemperatureTextBox.PlaceholderText = "°F";
+            }
+            else
+            {
+                TemperatureTextBox.Text = TemperatureTextBox.Text + " °F";
+            }
+        }
+
+        private void TemperatureTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TemperatureTextBox.Text = "";
+        }
     }
 }

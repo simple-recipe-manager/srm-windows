@@ -33,9 +33,9 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
 
-        private void Next_Clicked(object sender, RoutedEventArgs e)
+        private void Finish_Clicked(object sender, RoutedEventArgs e)
         {
-
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
     }
 }
