@@ -79,7 +79,7 @@
                             <ColumnDefinition Width=".5*" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Grid.Column="1" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
+                        <Button Grid.Column="1" Content="&#xE713;" Tapped="Settings_Tapped"  FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
                         <Button Grid.Column="4" Content="&#xE710;" Tapped="New_Recipe_Onboarding" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
                         <Button Grid.Column="5" Content="&#xE895;" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="20" HorizontalAlignment="Center" />
                     </Grid>

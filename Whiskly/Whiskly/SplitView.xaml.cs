@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Whiskly.Pages.Seattings_Phone;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
@@ -49,6 +50,11 @@ namespace Whiskly
         public Windows.UI.Xaml.Controls.SplitView getMenuPane()
         {
             return this.MainNav;
+        }
+
+        private void Settings_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainContentFrame.Navigate(typeof(Settings));
         }
     }
 }
