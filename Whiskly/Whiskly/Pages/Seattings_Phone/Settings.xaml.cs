@@ -45,7 +45,26 @@ namespace Whiskly.Pages.Seattings_Phone
 
         private void Close_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            var LegalWebViewVis = WebView_Legal.Visibility.ToString();
+            var FeedbackFrameVis = Frame_Feedback.Visibility.ToString();
+
+            if (LegalWebViewVis == "Visible")
+            {
+                WebView_Legal.Visibility = Visibility.Collapsed;
+            }
+            else if (FeedbackFrameVis == "Visible")
+            {
+                Frame_Feedback.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            }
+        }
+
+        private void Legal_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            WebView_Legal.Visibility = Visibility.Visible;
         }
     }
 }
