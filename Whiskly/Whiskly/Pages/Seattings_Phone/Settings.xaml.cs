@@ -39,8 +39,6 @@ namespace Whiskly.Pages.Seattings_Phone
 
             yearInfo.Text = "© " + year + " Whiskly, Inc.";
             appVersionInfo.Text = assemblyInformation;
-            Debug.WriteLine("Version: " + major + "." + minor + "." + build + "." + revision);
-            Debug.WriteLine(assemblyInformation);
         }
 
         private void Close_Tapped(object sender, TappedRoutedEventArgs e)

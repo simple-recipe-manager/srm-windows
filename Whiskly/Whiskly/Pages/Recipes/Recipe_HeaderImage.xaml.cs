@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Whiskly.Pages;
-using Whiskly.Pages.Recipes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,26 +15,21 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Whiskly
+namespace Whiskly.Pages.Recipes
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RecipeFeed : Page
+    public sealed partial class Recipe_HeaderImage : Page
     {
-        public RecipeFeed()
+        public Recipe_HeaderImage()
         {
             this.InitializeComponent();
         }
 
-        private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
+        private void Back_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainNav.IsPaneOpen = true;
-        }
-
-        private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
     }
 }

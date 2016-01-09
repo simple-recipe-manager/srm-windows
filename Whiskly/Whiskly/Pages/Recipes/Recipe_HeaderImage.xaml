@@ -1,0 +1,176 @@
+﻿<Page
+    x:Class="Whiskly.Pages.Recipes.Recipe_HeaderImage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whiskly.Pages.Recipes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" FontWeight="Thin">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid_desktab.Visibility" Value="Visible"/>
+                        <Setter Target="grid_phone.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid_desktab.Visibility" Value="Collapsed"/>
+                        <Setter Target="grid_phone.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="grid_phone" Background="#FFF6F6F6">
+            <ScrollViewer  VerticalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="Recipe_StackPanel" Margin="25,0">
+                    <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" FontSize="48" Margin="0,25,0,0" Foreground="#FF80CBC4" Tapped="Back_Tapped" />
+                    <TextBlock x:Name="RecipeName_TextBlock" Text="Recipe Name" FontSize="64" TextWrapping="Wrap" LineHeight="69.333" LineStackingStrategy="BaselineToBaseline" FontWeight="Thin" Foreground="#FF80CBC4"  />
+                    <TextBlock x:Name="AddedDate_TextBlock" Text="added Jan. 1, 2014" FontSize="18.667" FontWeight="SemiLight"  Margin="0,10,0,50" Foreground="#FF8E8E8E" />
+
+                    <Grid x:Name="RecipeHeader_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
+                        <StackPanel>
+                            <!--<Border Width="{Binding ActualWidth, ElementName=RecipeHeader_Grid, Mode=TwoWay}" Height="200" CornerRadius="10,10,0,0">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="ms-appx:///Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill"/>
+                                </Border.Background>
+                            </Border>-->
+                            <Image Source="ms-appx:///Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill " />
+                            <TextBlock x:Name="UploadedBy_TextBlock" Text="uploaded by George Hinchliffe" FontWeight="SemiLight" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=RecipeHeader_Grid, Mode=TwoWay}" Y2="0"/>
+                            <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water. " FontWeight="Thin" TextWrapping="Wrap" Margin="25,10,25,25" Foreground="#FF8E8E8E" FontSize="21.333" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="Preparation_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
+                        <StackPanel>
+                            <TextBlock Text="Preparation" FontWeight="SemiLight" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
+                            <TextBlock x:Name="Yield_TextBox" Text="Yields: 2 servings" FontWeight="Thin" TextWrapping="Wrap" Margin="25,25,25,0" FontSize="26.667" Foreground="#FF8E8E8E" />
+                            <TextBlock x:Name="Preheat_TextBox" Text="Preheat: 350°" FontWeight="Thin" TextWrapping="Wrap" Margin="25,10,25,25" FontSize="26.667" Foreground="#FF8E8E8E" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="Ingredients_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
+                        <StackPanel>
+                            <TextBlock Text="Ingredients" FontWeight="SemiLight" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="IngredientCheckbox_Stackpanel" Margin="25,25,25,25">
+                                <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="bread" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="milk" Foreground="#FF8E8E8E" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="Directions_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
+                        <StackPanel>
+                            <TextBlock Text="Directions" FontWeight="SemiLight" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="Directions_Stackpanel" Margin="25,25,25,10">
+                                <Grid x:Name="DirectionGrid_1" Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock x:Name="Number_1" Grid.Column="0" Text="1" Foreground="#FF80CBC4" HorizontalAlignment="Center" FontSize="32" />
+                                    <TextBlock x:Name="Direction_1" Grid.Column="1" Text="Preheat oven to 350°F and butter an 8-inch square pan." TextWrapping="Wrap" FontSize="26.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                                <Grid x:Name="DirectionGrid_2" Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock x:Name="Number_2" Grid.Column="0" Text="2" Foreground="#FF80CBC4" HorizontalAlignment="Center" FontSize="32" />
+                                    <TextBlock x:Name="Direction_2" Grid.Column="1" Text="Spread pecans in an even layer on a baking sheet and bake until fragrant and toasted." TextWrapping="Wrap" FontSize="26.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                                <Grid x:Name="DirectionGrid_3" Margin="0,0,0,15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock x:Name="Number_3" Grid.Column="0" Text="3" Foreground="#FF80CBC4" HorizontalAlignment="Center" FontSize="32" />
+                                    <TextBlock x:Name="Direction_3" Grid.Column="1" Text="In a small bowl, mix flour, baking powder and salt." TextWrapping="Wrap" FontSize="26.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="Notes_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
+                        <StackPanel>
+                            <TextBlock Text="Notes" FontWeight="SemiLight" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Notes_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="NotesMainStackpanel" Margin="25">
+                                <StackPanel x:Name="NoteStackpanel_1" Margin="0,0,0,10">
+                                    <TextBlock x:Name="Note_1" Text="The Awesome Cooking Site" TextWrapping="Wrap" Margin="0,0,0,5" FontSize="18.667" Foreground="#FF8E8E8E"/>
+                                    <TextBlock x:Name="Link_1" Text="link" FontSize="18.667" Foreground="#FF80CBC4" />
+                                </StackPanel>
+                                <StackPanel x:Name="NoteStackpanel_2" Margin="0,0,0,10">
+                                    <TextBlock x:Name="Note_2" Text="The Awesome Cooking Site" TextWrapping="Wrap" Margin="0,0,0,5" FontSize="18.667" Foreground="#FF8E8E8E" />
+                                    <TextBlock x:Name="Link_2" Text="link"  FontSize="18.667" Foreground="#FF80CBC4" />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Notes_Grid, Mode=TwoWay}" Y2="0"/>
+
+                            <StackPanel x:Name="PersonalNotesStackpanel" Margin="25,25,25,15">
+                                <Grid x:Name="PersonalNoteStackpanel_1" Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="10*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="&#xE937;" FontFamily="Segoe MDL2 Assets" Foreground="#FF80CBC4" Margin="0,7,10,0" FontSize="10.667" VerticalAlignment="Top" />
+                                    <TextBlock x:Name="PersonalNote_1" Grid.Column="1" Text="Maybe less nuts next time." TextWrapping="Wrap" Margin="0,0,0,5" FontSize="18.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                                <Grid x:Name="PersonalNoteStackpanel_2" Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="10*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="&#xE937;" FontFamily="Segoe MDL2 Assets" Foreground="#FF80CBC4" Margin="0,7,10,0" FontSize="10.667" VerticalAlignment="Top" />
+                                    <TextBlock x:Name="PersonalNote_2" Grid.Column="1" Text="That's what she said." TextWrapping="Wrap" Margin="0,0,0,5" FontSize="18.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                                <Grid x:Name="PersonalNoteStackpanel_3" Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="10*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="&#xE937;" FontFamily="Segoe MDL2 Assets" Foreground="#FF80CBC4" Margin="0,7,10,0" FontSize="10.667" VerticalAlignment="Top" />
+                                    <TextBlock x:Name="PersonalNote_3" Grid.Column="1" Text="Remember to use the 8-inch pan. That larger pan caused the crust to be too thin." TextWrapping="Wrap" Margin="0,0,0,5" FontSize="18.667" Foreground="#FF8E8E8E" />
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid x:Name="grid_desktab">
+            <ScrollViewer>
+                <!--<Image Source="ms-appx:///Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill" Width="{Binding ActualWidth, ElementName=page, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=page, Mode=OneWay}" />-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width=".5*" />
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

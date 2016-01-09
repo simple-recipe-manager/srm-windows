@@ -127,6 +127,9 @@
     <Compile Include="Pages\RecipeOnboarding_Phone\RO_Title.xaml.cs">
       <DependentUpon>RO_Title.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Recipes\Recipe_HeaderImage.xaml.cs">
+      <DependentUpon>Recipe_HeaderImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Seattings_Phone\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RecipeOnboarding_Phone\RO_Title.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Recipes\Recipe_HeaderImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
