@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<analytics xmlns="http://googleanalyticssdk.codeplex.com/ns/easytracker">
+  <!--Replace placeholder ID with your tracking ID-->
+  <trackingId>UA-59476825-6</trackingId>
+  <!--Replace placeholder name with your app name-->
+  <appName>Whiskly</appName>
+  <!--Replace placeholder version with your app version-->
+  <appVersion>1.0.10.0</appVersion>
+</analytics>
