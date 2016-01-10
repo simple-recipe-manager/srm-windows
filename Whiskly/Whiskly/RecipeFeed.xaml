@@ -76,7 +76,7 @@
             </Grid.RowDefinitions>
 
 
-            <Rectangle Grid.Column="1" Grid.RowSpan="4" Width="300" Height="200" Fill="#FFF6C7C7" RadiusX="5" RadiusY="5" />
+            <Rectangle Grid.Column="1" Grid.RowSpan="4" Width="300" Height="200" Fill="#FFF6C7C7" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
 
             <Grid Grid.Column="1" Grid.Row="1" Background="#FFF3F3F3" CornerRadius="5">
                 <Grid.ColumnDefinitions>
