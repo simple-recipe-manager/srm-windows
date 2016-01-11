@@ -12,9 +12,18 @@
             
             <StackPanel x:Name="RecipeCard">
 
-                <Image x:Name="RecipeHeader_Image" Source="Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill" />
+                <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Height="200">
+                    <Border.Background >
+                        <ImageBrush Stretch="UniformToFill">
+                            <ImageBrush.ImageSource>
+                                <BitmapImage UriSource="Assets/whiskly_login_app_background.jpg" />
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
+                    </Border.Background>
+                </Border>
+                <!--<Image x:Name="RecipeHeader_Image" Source="Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill" />-->
 
-                    <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1">
                     <StackPanel BorderThickness="25,15">
                         <TextBlock x:Name="RecipeName_TextBlock" Text="Recipe Name" FontWeight="Medium" FontSize="24" Foreground="#FF8E8E8E" Margin="0,0,0,10" />
                         <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water." TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" />
@@ -24,7 +33,7 @@
 
                     <StackPanel Orientation="Horizontal" BorderThickness="25,10,25,15">
                         <TextBlock Text="Share" Margin="0,0,20,0" FontSize="21.333" Foreground="#FFCDCDCD" />
-                        <TextBlock Text="Open" FontSize="21.333" Foreground="#FF009688" />
+                        <TextBlock Text="Open" FontSize="21.333" Foreground="#FF009688" Tapped="Open_Tapped" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

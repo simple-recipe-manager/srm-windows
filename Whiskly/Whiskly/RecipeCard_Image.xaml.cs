@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Whiskly.Pages.Recipes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,6 +23,11 @@ namespace Whiskly
         public RecipeCard_Image()
         {
             this.InitializeComponent();
+        }
+
+        private void Open_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
         }
     }
 }
