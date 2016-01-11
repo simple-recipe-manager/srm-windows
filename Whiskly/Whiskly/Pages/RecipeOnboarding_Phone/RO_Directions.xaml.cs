@@ -56,9 +56,9 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
             this.DirectionsStackPanel.Children.Add(DirectionInternalStackPanel);
         }
 
-        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        private void Back_Clicked(object sender, RoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RO_Ingredients));
         }
 
         private void Next_Clicked(object sender, RoutedEventArgs e)

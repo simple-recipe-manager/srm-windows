@@ -32,16 +32,18 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
-                    
+                    <VisualState.Setters>
+                        <Setter Target="MainNav.OpenPaneLength" Value="250"/>
+                    </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <SplitView x:Name="MainNav" x:FieldModifier="public">
-            <SplitView.Pane>
+            <SplitView.Pane >
                 <Grid>
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" BorderThickness="15,40">
+                        <StackPanel Orientation="Horizontal" Margin="15,40">
                             <Ellipse Width="65" Height="65" >
                                 <Ellipse.Fill>
                                     <ImageBrush Stretch="Fill" ImageSource="Assets/Facebook-20160103-044219.jpg"/>

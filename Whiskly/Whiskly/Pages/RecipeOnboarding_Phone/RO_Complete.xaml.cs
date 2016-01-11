@@ -28,9 +28,9 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
             this.InitializeComponent();
         }
 
-        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        private void Back_Clicked(object sender, RoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Prep));
         }
 
         private void Finish_Clicked(object sender, RoutedEventArgs e)

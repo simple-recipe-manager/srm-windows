@@ -20,23 +20,23 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RO_Title : Page
+    public sealed partial class RO_Description : Page
     {
-        public RO_Title()
+        public RO_Description()
         {
             this.InitializeComponent();
         }
 
-        private void Cancel_Clicked(object sender, RoutedEventArgs e)
+        private void Back_Clicked(object sender, RoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Title));
         }
 
         private void Next_Clicked(object sender, RoutedEventArgs e)
         {
-            // Code to store values before continuing recipe onboarding process
+            //Code to store added ingredients on naviagation to new page
 
-            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Description));
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Ingredients));
         }
     }
 }

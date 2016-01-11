@@ -71,7 +71,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
-                <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
+                <TextBlock Padding="0,0,0,15" Text="Back" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Back_Clicked" Foreground="#FFDDDDDD" />
             </Grid>
             <Grid Grid.Column="1">
                 <TextBlock Padding="0,0,0,15" Text="Next" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Next_Clicked" Foreground="#FF26A69A" />
