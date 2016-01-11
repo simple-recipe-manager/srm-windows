@@ -9,30 +9,25 @@
 
     <Grid>
         <Grid CornerRadius="10" Background="#FFF6F6F6" Grid.Column="1" Grid.Row="1">
-            <Grid x:Name="RecipeCard">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+            
+            <StackPanel x:Name="RecipeCard">
 
-                <Grid Grid.Row="0">
-                    <Image x:Name="RecipeHeader_Image" Source="Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill" />
-                </Grid>
+                <Image x:Name="RecipeHeader_Image" Source="Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill" />
 
-                <StackPanel Grid.Row="1">
-                    <StackPanel BorderThickness="25,10">
-                        <TextBlock x:Name="RecipeName_TextBlock" Text="Recipe Name" FontWeight="Medium" FontSize="24" />
-                        <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water." TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                    <StackPanel Grid.Row="1">
+                    <StackPanel BorderThickness="25,15">
+                        <TextBlock x:Name="RecipeName_TextBlock" Text="Recipe Name" FontWeight="Medium" FontSize="24" Foreground="#FF8E8E8E" Margin="0,0,0,10" />
+                        <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water." TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" />
                     </StackPanel>
 
                     <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=RecipeCard, Mode=TwoWay}" Y2="0" />
 
                     <StackPanel Orientation="Horizontal" BorderThickness="25,10,25,15">
-                        <TextBlock Text="Share" Margin="0,0,20,0" FontSize="21.333" />
+                        <TextBlock Text="Share" Margin="0,0,20,0" FontSize="21.333" Foreground="#FFCDCDCD" />
                         <TextBlock Text="Open" FontSize="21.333" Foreground="#FF009688" />
                     </StackPanel>
                 </StackPanel>
-            </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </UserControl>
