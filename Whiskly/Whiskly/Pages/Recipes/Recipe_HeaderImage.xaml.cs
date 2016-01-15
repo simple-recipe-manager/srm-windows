@@ -22,13 +22,21 @@ namespace Whiskly.Pages.Recipes
     /// </summary>
     public sealed partial class Recipe_HeaderImage : Page
     {
+        public int rID = 0;
+
         public Recipe_HeaderImage()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("Recipe ID #" + rID);
         }
 
         private void Back_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "back_click", "Back: from recipe ID #" + rID, 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
     }
