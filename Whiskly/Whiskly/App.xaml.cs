@@ -37,7 +37,7 @@ namespace Whiskly
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            screenLock();
+            //screenLock();
         }
 
         public void screenLock()
@@ -48,7 +48,7 @@ namespace Whiskly
             }
             else
             {
-                Ap
+                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             }
         }
 
@@ -94,6 +94,8 @@ namespace Whiskly
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
+            screenLock();
             // Ensure the current window is active
             Window.Current.Activate();
         }
