@@ -29,6 +29,9 @@ namespace Whiskly.Pages.Seattings_Phone
         {
             this.InitializeComponent();
 
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("Settings");
+
             var year = DateTime.Now.Year;
 
             var major = Package.Current.Id.Version.Major;
@@ -48,20 +51,32 @@ namespace Whiskly.Pages.Seattings_Phone
 
             if (LegalWebViewVis == "Visible")
             {
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "legalhide_clicked", "Hide Legal: from Settings", 0);
+
                 WebView_Legal.Visibility = Visibility.Collapsed;
             }
             else if (FeedbackFrameVis == "Visible")
             {
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "feedbackhide_clicked", "Hide Feedback: from Settings", 0);
+
                 Frame_Feedback.Visibility = Visibility.Collapsed;
             }
             else
             {
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "settingclose_clicked", "Settings Close: from Settings", 0);
+
                 SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             }
         }
 
         private void Legal_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "legalopen_clicked", "Settings Open: from Settings", 0);
+
             WebView_Legal.Visibility = Visibility.Visible;
         }
     }

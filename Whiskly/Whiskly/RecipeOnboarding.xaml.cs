@@ -31,24 +31,36 @@ namespace Whiskly
         {
             this.InitializeComponent();
 
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeOnboarding");
+
             RO_Phone_Frame.Navigate(typeof(RO_Title));
             RecipeOnboarding.recipeOnboarding = this;
         }
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "cancel_click", "Cancel: from RecipeOnboarding", 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
         private void Finish_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "finish_click", "Finish: from RecipeOnboarding", 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addIngredient_click", "Add Ingredient: from RecipeOnboarding", 0);
+
             int stackpanelSize = this.IngredientsStackPanel.Children.Count;
 
             int currentTextbox = stackpanelSize + 1;
@@ -63,6 +75,9 @@ namespace Whiskly
 
         private void Add_Direction_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addDirection_click", "Add Direction: from RecipeOnboarding", 0);
+
             int stackpanelSize = this.DirectionsStackPanel.Children.Count;
 
             int currentStackpanel = stackpanelSize + 1;

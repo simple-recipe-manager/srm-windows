@@ -25,15 +25,24 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         public RO_Title()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("RO_Title");
         }
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "cancel_click", "Cancel: from RO_Title", 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }
 
         private void Next_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "next_click", "Next: from RO_Title", 0);
+
             // Code to store values before continuing recipe onboarding process
 
             RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Description));

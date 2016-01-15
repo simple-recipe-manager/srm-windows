@@ -29,10 +29,16 @@ namespace Whiskly
         public RecipeFeed()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeFeed");
         }
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Menu: from RecipeFeed", 0);
+
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 

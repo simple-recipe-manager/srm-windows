@@ -30,6 +30,10 @@ namespace Whiskly
         public Login()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("Login");
+
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundColor = Color.FromArgb(255, 38, 166, 154);
@@ -39,16 +43,25 @@ namespace Whiskly
 
         private void Login_Amazon_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "login_click", "Login: via Amazon", 0);
+
             MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
         }
 
         private void Login_Facebook_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "login_click", "Login: via Facebook", 0);
+
             MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
         }
 
         private void Login_Guest_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "login_click", "Login: via Guest", 0);
+
             MainPage.mainPage.MainFrame.Navigate(typeof(SplitView));
         }
 
@@ -66,6 +79,10 @@ namespace Whiskly
             if (e.Key == VirtualKey.Enter)
             {
                 Debug.WriteLine("Submit Enter key is pressed.");
+
+                // track a custom event
+                //GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "login_click", "Login: via Email", 0);
+
                 // Code that controls user password verification
             }
         }

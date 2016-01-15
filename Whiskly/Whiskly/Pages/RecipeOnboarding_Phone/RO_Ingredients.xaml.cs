@@ -26,15 +26,24 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         public RO_Ingredients()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("RO_Ingredients");
         }
 
         private void Back_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "back_click", "Back: from RO_Ingredients", 0);
+
             RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Description));
         }
 
         private void Next_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "next_click", "Next: from RO_Ingredients", 0);
+
             //Code to store added ingredients on naviagation to new page
 
             RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Directions));
@@ -42,6 +51,9 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
 
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addIngredient_click", "Add Ingredient: from RO_Ingredients", 0);
+
             int stackpanelSize = this.IngredientsStackPanel.Children.Count;
 
             int currentTextbox = stackpanelSize + 1;

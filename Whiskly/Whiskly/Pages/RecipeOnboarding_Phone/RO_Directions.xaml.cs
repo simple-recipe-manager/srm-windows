@@ -26,10 +26,16 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         public RO_Directions()
         {
             this.InitializeComponent();
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("RO_Directions");
         }
 
         private void Add_Direction_Click(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addDirection_click", "Add Direction: from RO_Directions", 0);
+
             int stackpanelSize = this.DirectionsStackPanel.Children.Count;
 
             int currentStackpanel = stackpanelSize + 1;
@@ -58,11 +64,17 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
 
         private void Back_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "back_click", "Back: from RO_Directions", 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RO_Ingredients));
         }
 
         private void Next_Clicked(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "next_click", "Next: from RO_Directions", 0);
+
             RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Prep));
         }
     }
