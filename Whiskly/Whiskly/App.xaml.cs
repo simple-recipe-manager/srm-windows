@@ -46,6 +46,10 @@ namespace Whiskly
             {
                 Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.PortraitFlipped | Windows.Graphics.Display.DisplayOrientations.Portrait;
             }
+            else
+            {
+                Ap
+            }
         }
 
         /// <summary>
