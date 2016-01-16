@@ -1,9 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <analytics xmlns="http://googleanalyticssdk.codeplex.com/ns/easytracker">
-  <!--Replace placeholder ID with your tracking ID-->
+  <!-- trackingId (String): The Google Analytics tracking ID to which to send your data. Dashes in the ID must be unencoded. You can disable your tracking by not providing this value. -->
   <trackingId>UA-59476825-6</trackingId>
-  <!--Replace placeholder name with your app name-->
+  
+  <!-- appName (String): The name of your app, used in the app name dimension in your reports. Defaults to the value found in the package. -->
   <appName>Whiskly</appName>
-  <!--Replace placeholder version with your app version-->
-  <appVersion>1.0.10.0</appVersion>
+  
+  <!--debug (Boolean): Flag to enable or writing of debug information to the log, useful for troubleshooting your implementation. false by default. -->
+  <debug>true</debug>
+  
+  <!-- reportUncaughtExceptions (Boolean): Automatically track an Exception each time an uncaught exception is thrown in your application. false by default. -->
+  <reportUncaughtExceptions>true</reportUncaughtExceptions>
 </analytics>

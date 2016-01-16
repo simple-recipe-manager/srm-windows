@@ -20,6 +20,8 @@ namespace Whiskly
 {
     public sealed partial class RecipeCard_Image : UserControl
     {
+        public int rID = 0;
+
         public RecipeCard_Image()
         {
             this.InitializeComponent();
@@ -27,6 +29,9 @@ namespace Whiskly
 
         private void Open_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + rID + ") Open: from recipe ID #" + rID, 0);
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
         }
     }
