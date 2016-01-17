@@ -71,7 +71,7 @@ namespace Whiskly
             }
             else
             {
-                ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+                //ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             }
         }
 
