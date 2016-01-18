@@ -11,6 +11,7 @@ using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -42,26 +43,7 @@ namespace Whiskly
             //screenLock();
         }
 
-        public void writeAppVersions()
-        {
-//            StorageFile file = await Package.Current.InstalledLocation.GetFileAsync("XXX.xml");
-//            using (IRandomAccessStream writeStream = await file.OpenAsync(FileAccessMode.ReadWrite))
-//            {
-//                System.IO.Stream s = writeStream.AsStreamForWrite();
-//                System.Xml.XmlWriterSettings settings = new System.Xml.XmlWriterSettings();
-//                settings.Async = true;
-//                using (System.Xml.XmlWriter writer = System.Xml.XmlWriter.Create(s, settings))
-//                {
-//                    writer.WriteStartElement("Order");
-//                    writer.WriteElementString("OrderID","y1");
-//                    writer.WriteElementString("OrderTotal", "y2");
-//                    writer.WriteElementString("Customer", "y3");
-//                    writer.WriteElementString("Phone", "y4");
-//                    writer.Flush();
-
-//                    await writer.FlushAsync();
-//            }
-        }
+        public DateTime startTime = DateTime.Now;
 
         public void screenLock()
         {
@@ -74,6 +56,16 @@ namespace Whiskly
                 //ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             }
         }
+
+        //public void Close()
+        //{
+        //    Debug.WriteLine("App closed.");
+        //}
+
+        //public delegate void WindowClosedEventHandler(object sender, CoreWindowEventArgs e)
+        //{
+        //   Debug.WriteLine("App closed."); 
+        //}
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -144,6 +136,9 @@ namespace Whiskly
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
+
+            // track a timing (how long it takes your app to run a specific task)
+            GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "App View Time", "App", "Exit By OnSuspend");
             deferral.Complete();
         }
     }

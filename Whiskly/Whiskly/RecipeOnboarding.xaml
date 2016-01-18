@@ -67,7 +67,7 @@
                             <ComboBoxItem>Even Less Food</ComboBoxItem>
                             <ComboBoxItem>George Amount</ComboBoxItem>
                         </ComboBox>
-                        <TextBox x:Name="RecipeDescription_textBox_desktab" PlaceholderText="Recipe Description" Margin="25,50,25,0" />
+                        <TextBox x:Name="RecipeDescription_textBox_desktab" PlaceholderText="Recipe Description" Margin="25,50,25,0" TextWrapping="Wrap" />
                     </StackPanel>
                     <Grid VerticalAlignment="Bottom">
                         <Grid.ColumnDefinitions>

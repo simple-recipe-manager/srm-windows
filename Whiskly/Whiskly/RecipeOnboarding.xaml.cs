@@ -27,6 +27,8 @@ namespace Whiskly
     {
         public static RecipeOnboarding recipeOnboarding;
 
+        public DateTime startTime = DateTime.Now;
+
         public RecipeOnboarding()
         {
             this.InitializeComponent();
@@ -43,6 +45,9 @@ namespace Whiskly
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "cancel_click", "Cancel: from RecipeOnboarding", 0);
 
+            // track a timing (how long it takes your app to run a specific task)
+            GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "Recipe Onboarding View Time", "RecipeOnboarding", "Exit By Cancel");
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
@@ -51,6 +56,9 @@ namespace Whiskly
         {
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "finish_click", "Finish: from RecipeOnboarding", 0);
+
+            // track a timing (how long it takes your app to run a specific task)
+            GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "Recipe Onboarding View Time", "RecipeOnboarding", "Exit By Finish");
 
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
