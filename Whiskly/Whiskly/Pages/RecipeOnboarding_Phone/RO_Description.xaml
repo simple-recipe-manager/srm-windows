@@ -22,7 +22,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Description" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
                 <StackPanel x:Name="IngredientsStackPanel" Orientation="Vertical" Margin="25,25,25,0">
-                    <TextBox PlaceholderText="Recipe Description" />
+                    <TextBox PlaceholderText="Recipe Description" TextWrapping="Wrap" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
