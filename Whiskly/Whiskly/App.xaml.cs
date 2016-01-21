@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoogleAnalytics.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -20,7 +21,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 namespace Whiskly
 {
     /// <summary>
@@ -39,6 +39,7 @@ namespace Whiskly
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
             //screenLock();
         }
 
