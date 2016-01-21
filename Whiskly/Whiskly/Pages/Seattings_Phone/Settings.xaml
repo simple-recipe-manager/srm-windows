@@ -17,7 +17,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" BorderThickness="0,50,0,0">
                 <Button x:Name="Legal_Button" Tapped="Legal_Tapped" Content="Legal" HorizontalAlignment="Center" Width="{Binding ActualWidth, ElementName=Feedback_Button, Mode=OneWay}" Margin="0,0,5,0" />
-                <Button x:Name="Feedback_Button" Content="Send Feedback" HorizontalAlignment="Center" Margin="5,0,0,0" />
+                <Button x:Name="Feedback_Button" Tapped="Feedback_Tapped" Content="Send Feedback" HorizontalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
         </StackPanel>
 

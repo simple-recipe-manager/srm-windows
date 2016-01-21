@@ -6,8 +6,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -72,36 +74,31 @@ namespace Whiskly.Pages.Seattings_Phone
             }
         }
 
+
         private void Legal_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "legalopen_clicked", "Settings Open: from Settings", 0);
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "legalopen_clicked", "Legal Open: from Settings", 0);
 
             WebView_Legal.Visibility = Visibility.Visible;
         }
 
-        private async void ComposeEmail(Windows.ApplicationModel.Contacts.Contact recipient, string messageBody, StorageFile attachmentFile)
+        private void Feedback_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "feedbackopen_clicked", "Feedback Email Open: from Settings", 0);
+
+            ComposeEmail();
+        }
+
+        private async void ComposeEmail()
+        {
+            EmailMessage emailMessage = new EmailMessage();
+            emailMessage.To.Add(new EmailRecipient("george@georgehinch.com"));
+            string messageBody = "Hello World";
             emailMessage.Body = messageBody;
 
-            if (attachmentFile != null)
-            {
-                var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
-
-                var attachment = new Windows.ApplicationModel.Email.EmailAttachment(attachmentFile.Name, stream);
-
-                emailMessage.Attachments.Add(attachment);
-            }
-
-            var email = recipient.Emails.FirstOrDefault<Windows.ApplicationModel.Contacts.ContactEmail>();
-            if (email != null)
-            {
-                var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient(email.Address);
-                emailMessage.To.Add(emailRecipient);
-            }
-
-            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+            await EmailManager.ShowComposeNewEmailAsync(emailMessage);
         }
     }
 }
