@@ -27,6 +27,12 @@ namespace Whiskly.Pages.Seattings_Phone
     /// </summary>
     public sealed partial class Settings : Page
     {
+        public var major = Package.Current.Id.Version.Major;
+        public var minor = Package.Current.Id.Version.Minor;
+        public var build = Package.Current.Id.Version.Build;
+        public var revision = Package.Current.Id.Version.Revision;
+        public var assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")";
+
         public Settings()
         {
             this.InitializeComponent();
@@ -36,11 +42,11 @@ namespace Whiskly.Pages.Seattings_Phone
 
             var year = DateTime.Now.Year;
 
-            var major = Package.Current.Id.Version.Major;
+            /* var major = Package.Current.Id.Version.Major;
             var minor = Package.Current.Id.Version.Minor;
             var build = Package.Current.Id.Version.Build;
             var revision = Package.Current.Id.Version.Revision;
-            var assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")";
+            var assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")"; */
 
             yearInfo.Text = "© " + year + " Whiskly, Inc.";
             appVersionInfo.Text = assemblyInformation;
@@ -95,7 +101,9 @@ namespace Whiskly.Pages.Seattings_Phone
         {
             EmailMessage emailMessage = new EmailMessage();
             emailMessage.To.Add(new EmailRecipient("george@georgehinch.com"));
+            string messageSubject = "Whiskly User Feedback";
             string messageBody = "Hello World";
+            emailMessage.Subject = messageSubject;
             emailMessage.Body = messageBody;
 
             await EmailManager.ShowComposeNewEmailAsync(emailMessage);
