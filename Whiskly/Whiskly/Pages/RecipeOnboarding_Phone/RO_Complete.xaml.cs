@@ -37,7 +37,7 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "back_click", "Back: from RO_Complete", 0);
 
-            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Prep));
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Image));
         }
 
         private void Finish_Clicked(object sender, RoutedEventArgs e)

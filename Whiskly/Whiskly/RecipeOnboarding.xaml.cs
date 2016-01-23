@@ -112,6 +112,27 @@ namespace Whiskly
             this.DirectionsStackPanel.Children.Add(DirectionInternalStackPanel);
         }
 
+        private void UploadPhoto_Clicked(object sender, RoutedEventArgs e)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "upload_click", "Upload: from RecipeOnboarding", 0);
+
+            photoUploadr();
+        }
+
+        private void UploadPhoto_DropCompleted(UIElement sender, DropCompletedEventArgs args)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "upload_drop", "Upload Drop: from RecipeOnboarding", 0);
+
+            photoUploadr();
+        }
+
+        private void photoUploadr()
+        {
+            // do things to get the photo into the webz
+        }
+
         public Frame getRO_Phone_Frame()
         {
             return this.RO_Phone_Frame;

@@ -46,7 +46,7 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
 
             // Code to save recipe preperation inputs
 
-            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Complete));
+            RecipeOnboarding.recipeOnboarding.RO_Phone_Frame.Navigate(typeof(RO_Image));
         }
 
         private void YieldTextBox_LostFocus(object sender, RoutedEventArgs e)

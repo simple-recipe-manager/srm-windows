@@ -116,6 +116,9 @@
     <Compile Include="Pages\RecipeOnboarding_Phone\RO_Complete.xaml.cs">
       <DependentUpon>RO_Complete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\RecipeOnboarding_Phone\RO_Image.xaml.cs">
+      <DependentUpon>RO_Image.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RecipeOnboarding_Phone\RO_Description.xaml.cs">
       <DependentUpon>RO_Description.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
     <Page Include="Pages\RecipeOnboarding_Phone\RO_Complete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RecipeOnboarding_Phone\RO_Image.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\RecipeOnboarding_Phone\RO_Description.xaml">
       <SubType>Designer</SubType>

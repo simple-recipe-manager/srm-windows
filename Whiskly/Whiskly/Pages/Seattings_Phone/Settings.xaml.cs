@@ -115,7 +115,7 @@ namespace Whiskly.Pages.Seattings_Phone
             var deviceArch = Package.Current.Id.Architecture;
             var userID = "";
             var userLang = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
-            var userCarrier = sysInfo.SystemHardwareVersion;
+            var userCarrier = "";
             var networkStat = NetworkInformation.GetInternetConnectionProfile();
 
             string messageBody = "---"
