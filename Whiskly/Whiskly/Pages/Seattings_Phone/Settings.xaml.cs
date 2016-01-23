@@ -9,7 +9,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
 using Windows.Storage;
+using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,11 +29,11 @@ namespace Whiskly.Pages.Seattings_Phone
     /// </summary>
     public sealed partial class Settings : Page
     {
-        public var major = Package.Current.Id.Version.Major;
-        public var minor = Package.Current.Id.Version.Minor;
-        public var build = Package.Current.Id.Version.Build;
-        public var revision = Package.Current.Id.Version.Revision;
-        public var assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")";
+        public static int major = Package.Current.Id.Version.Major;
+        public static int minor = Package.Current.Id.Version.Minor;
+        public static int build = Package.Current.Id.Version.Build;
+        public static int revision = Package.Current.Id.Version.Revision;
+        public string assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")";
 
         public Settings()
         {
@@ -41,12 +43,6 @@ namespace Whiskly.Pages.Seattings_Phone
             GoogleAnalytics.EasyTracker.GetTracker().SendView("Settings");
 
             var year = DateTime.Now.Year;
-
-            /* var major = Package.Current.Id.Version.Major;
-            var minor = Package.Current.Id.Version.Minor;
-            var build = Package.Current.Id.Version.Build;
-            var revision = Package.Current.Id.Version.Revision;
-            var assemblyInformation = "Version: " + major + "." + minor + "." + build + " (" + revision + ")"; */
 
             yearInfo.Text = "© " + year + " Whiskly, Inc.";
             appVersionInfo.Text = assemblyInformation;
@@ -102,7 +98,37 @@ namespace Whiskly.Pages.Seattings_Phone
             EmailMessage emailMessage = new EmailMessage();
             emailMessage.To.Add(new EmailRecipient("george@georgehinch.com"));
             string messageSubject = "Whiskly User Feedback";
-            string messageBody = "Hello World";
+
+            var sysInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
+            var ai = AnalyticsInfo.VersionInfo;
+            string sv = ai.DeviceFamilyVersion;
+            ulong v = ulong.Parse(sv);
+            ulong v1 = (v & 0xFFFF000000000000L) >> 48;
+            ulong v2 = (v & 0x0000FFFF00000000L) >> 32;
+            ulong v3 = (v & 0x00000000FFFF0000L) >> 16;
+            ulong v4 = (v & 0x000000000000FFFFL);
+
+            var timeNow = DateTime.UtcNow;
+            var deviceMan = sysInfo.SystemManufacturer;
+            var deviceMod = sysInfo.SystemProductName;
+            var deviceOS = $"{v1}.{v2}.{v3} ({v4})";
+            var deviceArch = Package.Current.Id.Architecture;
+            var userID = "";
+            var userLang = Windows.Globalization.Language.CurrentInputMethodLanguageTag;
+            var userCarrier = sysInfo.SystemHardwareVersion;
+            var networkStat = NetworkInformation.GetInternetConnectionProfile();
+
+            string messageBody = "---"
+                + "\n" + assemblyInformation
+                + "\n" + timeNow
+                + "\n" + "Device Manufactuer: " + deviceMan
+                + "\n" + "Device Model: " + deviceMod
+                + "\n" + "OS: " + deviceOS
+                + "\n" + "Architecture: " + deviceArch
+                + "\n" + "User ID: " + userID
+                + "\n" + "Language: " + userLang
+                + "\n" + "Carrier: " + userCarrier
+                + "\n" + "Network Status: " + networkStat.ServiceProviderGuid;
             emailMessage.Subject = messageSubject;
             emailMessage.Body = messageBody;
 
