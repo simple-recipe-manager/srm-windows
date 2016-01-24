@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Whiskly.Pages.RecipeOnboarding_Phone;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -36,8 +37,11 @@ namespace Whiskly
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeOnboarding");
 
-            RO_Phone_Frame.Navigate(typeof(RO_Title));
-            RecipeOnboarding.recipeOnboarding = this;
+            if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1))
+            {
+                RO_Phone_Frame.Navigate(typeof(RO_Title));
+                RecipeOnboarding.recipeOnboarding = this;
+            }
         }
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e)

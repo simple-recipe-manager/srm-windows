@@ -1,4 +1,5 @@
-﻿using GoogleAnalytics.Core;
+﻿using GoogleAnalytics;
+using GoogleAnalytics.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,7 +41,9 @@ namespace Whiskly
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            //screenLock();
+            Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.Landscape | Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped;
+
+            screenLock();
         }
 
         public DateTime startTime = DateTime.Now;
@@ -53,7 +56,7 @@ namespace Whiskly
             }
             else
             {
-                //ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+                Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.Landscape | Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped;
             }
         }
 
