@@ -26,7 +26,7 @@
                 <StackPanel Grid.Row="1">
                     <StackPanel BorderThickness="25,15">
                         <TextBlock x:Name="RecipeName_TextBlock" Text="Recipe Name" FontWeight="Medium" FontSize="24" Foreground="#FF8E8E8E" Margin="0,0,0,10" />
-                        <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water." TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" />
+                        <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water." TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" MaxWidth="500" />
                     </StackPanel>
 
                     <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=RecipeCard, Mode=TwoWay}" Y2="0" />
