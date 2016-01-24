@@ -101,18 +101,9 @@
                 <Rectangle Width="300" Height="200" Fill="Yellow" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
             </FlipView>
 
-            <Grid Grid.Column="1" Grid.Row="1" Background="#FFF3F3F3" CornerRadius="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="5*" />
-                </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFF3F3F3" Height="50" VerticalAlignment="Top">
 
-                <Grid Grid.Column="0" Tapped="MenuHamburger_Clicked">
-                    <Viewbox Margin="10">
-                        <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" Foreground="#FFB9B9B9" />
-                    </Viewbox>
-                </Grid>
-                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center"/>
+                <TextBox Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center" Margin="25,9" BorderThickness="1"/>
             </Grid>
         </Grid>
     </Grid>
