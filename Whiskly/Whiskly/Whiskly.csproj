@@ -150,6 +150,9 @@
     <Compile Include="RecipeOnboarding.xaml.cs">
       <DependentUpon>RecipeOnboarding.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShoppingList.xaml.cs">
+      <DependentUpon>ShoppingList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SplitView.xaml.cs">
       <DependentUpon>SplitView.xaml</DependentUpon>
     </Compile>
@@ -269,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RecipeOnboarding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShoppingList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
