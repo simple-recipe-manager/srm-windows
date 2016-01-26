@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,6 +34,18 @@ namespace Whiskly
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Menu: from ShoppingList", 0);
 
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            if(SearchField.Visibility == Visibility.Collapsed)
+            {
+
+            }
+            else if(SearchField.Visibility == Visibility.Visible)
+            {
+
+            }
         }
     }
 }
