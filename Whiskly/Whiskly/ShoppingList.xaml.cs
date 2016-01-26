@@ -40,11 +40,25 @@ namespace Whiskly
         {
             if(SearchField.Visibility == Visibility.Collapsed)
             {
+              /* DoubleAnimation fadeout = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(2), FillBehavior.HoldEnd);
+              fadeout.BeginTime = TimeSpan.FromSeconds(0);
+              Storyboard sb = new Storyboard();
+              Storyboard.SetTarget(fadeout, SearchField);
+              Storyboard.SetTargetProperty(fadeout, new PropertyPath("(Opacity)"));
+              sb.Children.Add(fadeout);
+              sb.Begin(); */
 
+                SearchField.Visibility = Visibility.Visible;
+                SearchField.IsFocused = true;
+
+                SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(0xFF, 00, 69, 0x5C));
             }
             else if(SearchField.Visibility == Visibility.Visible)
             {
+                SearchField.Visibility = Visibility.Collapsed;
+                SearchField.IsFocused = false;
 
+                SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
             }
         }
     }

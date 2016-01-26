@@ -6,6 +6,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Style x:Key="SearchFade" TargetType="{x:Type TextBox}">
+      <Style.Triggers>
+          <Trigger Property=”Text” Value=””>
+              <Setter Property=”Visibility” Value=”Collapsed” />
+          </Trigger>
+          <Trigger Property=”Text” Value=”{x:Null}”>
+              <Setter Property=”Visibility” Value=”Collapsed” />
+          </Trigger>
+          <Trigger Property=”Visibility” Value=”Visible”>
+              <Trigger.EnterActions>
+                  <BeginStoryboard>
+                      <Storyboard>
+                          <DoubleAnimation Storyboard.TargetProperty=”Opacity” Duration=”00:00:00″ BeginTime=”00:00:00″ From=”0.0″ To=”1.0″ />
+                          <DoubleAnimation Storyboard.TargetProperty=”Opacity” Duration=”00:00:03″ BeginTime=”00:00:10″ From=”1.0″ To=”0.0″ />
+                      </Storyboard>
+                  </BeginStoryboard>
+              </Trigger.EnterActions>
+          </Trigger>
+      </Style.Triggers>
+    </Style>
 
     <Grid x:Name="grid">
         <VisualStateManager.VisualStateGroups>
@@ -45,7 +65,7 @@
             </Grid.RowDefinitions>
 
             <FlipView x:Name="Recipe_FlipView" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" Margin="0,50,0,0"  >
-                
+
             </FlipView>
 
 
@@ -112,7 +132,7 @@
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFF3F3F3" Height="50" VerticalAlignment="Top">
                 <StackPanel x:Name="SearchStackpanel" Orientation="Horizontal" Width="415" Background="#FFF4C4C4" HorizontalAlignment="Right">
-                    <TextBox x:Name="SearchField" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center" Margin="25,9" BorderThickness="1" Width="300"/>
+                    <TextBox x:Name="SearchField" Style="{StaticResource SearchFade}" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center" Margin="25,9" BorderThickness="1" Width="300"/>
                     <Button Content="&#xE71E;" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Segoe MDL2 Assets" FontSize="26.667" Click="Search_Click" Margin="0" BorderThickness="0,0,25,0" />
                 </StackPanel>
             </Grid>
