@@ -26,5 +26,13 @@ namespace Whiskly
         {
             this.InitializeComponent();
         }
+
+        private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Menu: from ShoppingList", 0);
+
+            SplitView.splitviewPage.MainNav.IsPaneOpen = true;
+        }
     }
 }

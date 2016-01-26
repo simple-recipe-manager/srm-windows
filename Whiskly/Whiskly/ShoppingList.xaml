@@ -45,18 +45,7 @@
             </Grid.RowDefinitions>
 
             <FlipView x:Name="Recipe_FlipView" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" Margin="0,50,0,0"  >
-                <!-- Use a vertical stack panel for vertical flipping. -->
-                <FlipView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </FlipView.ItemsPanel>
-
-                <local:RecipeCard_Image Margin="25,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-                <Rectangle Width="300" Height="200" Fill="Red" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
-                <Rectangle Width="300" Height="200" Fill="Green" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
-                <Rectangle Width="300" Height="200" Fill="Yellow" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
+                
             </FlipView>
 
 
@@ -69,7 +58,7 @@
                 <Grid Grid.Column="0" Tapped="MenuHamburger_Clicked">
                     <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" Foreground="#FFB9B9B9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26.667" />
                 </Grid>
-                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center" Margin="0,9,22,9" BorderThickness="1"/>
+                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search List" VerticalAlignment="Center" Margin="0,9,22,9" BorderThickness="1"/>
             </Grid>
         </Grid>
 
@@ -87,8 +76,38 @@
             </Grid.RowDefinitions>
 
 
-            <ScrollViewer x:Name="ShoppingList_ScrollViewer_Desktab" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" >
-                
+            <ScrollViewer x:Name="ShoppingList_ScrollViewer_Desktab" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" VerticalScrollBarVisibility="Hidden" Margin="0,50,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Background="#FFF6F6F6" CornerRadius="10" Grid.Column="0" Margin="0,50,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Ingredients" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="IngredientCheckbox_Stackpanel" Margin="25,25,25,25">
+                                <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="bread" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="milk" Foreground="#FF8E8E8E" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Background="#FFF6F6F6" CornerRadius="10" Grid.Column="2" Margin="0,50,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="PurchasedIngredientCheckbox_Stackpanel" Margin="25,25,25,25">
+                                <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="bread" Foreground="#FF8E8E8E" />
+                                <CheckBox Content="milk" Foreground="#FF8E8E8E" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </ScrollViewer>
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFF3F3F3" Height="50" VerticalAlignment="Top">

@@ -31,7 +31,7 @@ namespace Whiskly
         {
             this.InitializeComponent();
 
-            MainContentFrame.Navigate(typeof(RecipeFeed));
+            PrivateButton.IsChecked = true;
             SplitView.splitviewPage = this;
 
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
@@ -39,6 +39,18 @@ namespace Whiskly
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundColor = Colors.White;
                 Windows.UI.ViewManagement.StatusBar.GetForCurrentView().BackgroundOpacity = 1;
             }
+        }
+
+        private void PrivateRecipe_Checked(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Navigate(typeof(RecipeFeed));
+            PrivateButton.IsChecked = true;
+        }
+
+        private void ShoppingList_Checked(object sender, RoutedEventArgs e)
+        {
+            MainContentFrame.Navigate(typeof(ShoppingList));
+            ShoppingButton.IsChecked = true;
         }
 
         private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
