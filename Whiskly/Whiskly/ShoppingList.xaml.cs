@@ -6,12 +6,14 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,6 +28,8 @@ namespace Whiskly
         public ShoppingList()
         {
             this.InitializeComponent();
+
+            SearchField.Opacity = 0;
         }
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
@@ -38,28 +42,38 @@ namespace Whiskly
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if(SearchField.Visibility == Visibility.Collapsed)
+            SearchField.Opacity = 1;
+            if (SearchStackpanel.Tag.ToString() == "Open")
             {
-              /* DoubleAnimation fadeout = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(2), FillBehavior.HoldEnd);
-              fadeout.BeginTime = TimeSpan.FromSeconds(0);
-              Storyboard sb = new Storyboard();
-              Storyboard.SetTarget(fadeout, SearchField);
-              Storyboard.SetTargetProperty(fadeout, new PropertyPath("(Opacity)"));
-              sb.Children.Add(fadeout);
-              sb.Begin(); */
-
-                SearchField.Visibility = Visibility.Visible;
-                SearchField.IsFocused = true;
+                SearchStackpanel.Tag = "Closed";
+                EnterStoryboard.Begin();
+                SearchField.Focus(FocusState.Programmatic);
 
                 SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(0xFF, 00, 69, 0x5C));
+                SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "searchOpen_click", "Search Open: from ShoppingList", 0);
             }
-            else if(SearchField.Visibility == Visibility.Visible)
+            else if (SearchStackpanel.Tag.ToString() == "Closed")
             {
-                SearchField.Visibility = Visibility.Collapsed;
-                SearchField.IsFocused = false;
+                SearchStackpanel.Tag = "Open";
+                ExitStoryboard.Begin();
 
                 SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
+                SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
+
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "searchClose_click", "Search Close: from ShoppingList", 0);
             }
+        }
+
+        private void SearchField_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ExitStoryboard.Begin();
+
+            SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
+            SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
     }
 }
