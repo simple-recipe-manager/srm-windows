@@ -71,6 +71,17 @@ namespace Whiskly
             }
         }
 
+        private void Add_ToList_Clicked(object sender, RoutedEventArgs e)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
+
+            CheckBox newItemCheckbox = new CheckBox();
+            newItemCheckbox.Content = "Ingredient_";
+
+            this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
+        }
+
         private void SearchField_LostFocus(object sender, RoutedEventArgs e)
         {
             ExitStoryboard.Begin();

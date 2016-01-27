@@ -92,26 +92,39 @@
                         <ColumnDefinition Width="5*" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Background="#FFF6F6F6" CornerRadius="10" Grid.Column="0" Margin="0,50,0,0">
+                    <Grid x:Name="ShoppingList_Grid" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="0" Margin="0,50,0,0" VerticalAlignment="Top">
                         <StackPanel>
                             <TextBlock Text="Ingredients" FontSize="24" FontWeight="Thin" Margin="25,10" />
-                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
-                            <StackPanel x:Name="IngredientCheckbox_Stackpanel" Margin="25,0">
-                                <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
-                                <CheckBox Content="bread" Foreground="#FF8E8E8E" />
-                                <CheckBox Content="milk" Foreground="#FF8E8E8E" />
+                            <TextBlock Text="Check ingredients off as you purchase them." FontWeight="Thin" Margin="25,0,25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="Shoppinglist_Stackpanel_Desktab" Margin="25,25,25,25">
+                                <CheckBox Content="eggs" IsChecked="True" />
+                                <CheckBox Content="bread" />
+                                <CheckBox Content="milk" />
                             </StackPanel>
+
+                            <Button Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
+                                        <TextBlock.RenderTransform>
+                                            <CompositeTransform Rotation="45"/>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                    <TextBlock Text="Add Ingredient" Margin="0,5,0,0" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
 
-                    <Grid Background="#FFF6F6F6" CornerRadius="10" Grid.Column="2" Margin="0,50,0,0">
-                        <StackPanel>
+                    <Grid x:Name="RecentlyPurchased_Grid" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="2" Margin="0,50,0,0" VerticalAlignment="Top">
+                        <StackPanel VerticalAlignment="Top">
                             <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
-                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
-                            <StackPanel x:Name="PurchasedIngredientCheckbox_Stackpanel" Margin="25,0">
-                                <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
-                                <CheckBox Content="bread" Foreground="#FF8E8E8E" />
-                                <CheckBox Content="milk" Foreground="#FF8E8E8E" />
+                            <TextBlock Text="Uncheck an ingredient to add it back to your shopping list." FontWeight="Thin" Margin="25,0,25,10" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="RecentlyPurchased_Stackpanel_Desktab" Margin="25,25,25,25">
+                                <CheckBox Content="eggs" />
+                                <CheckBox Content="bread" />
+                                <CheckBox Content="milk" />
                             </StackPanel>
                         </StackPanel>
                     </Grid>
