@@ -30,6 +30,8 @@ namespace Whiskly
         {
             this.InitializeComponent();
 
+            SearchField.Opacity = 0;
+
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeFeed");
         }
@@ -45,6 +47,42 @@ namespace Whiskly
         private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
         {
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            SearchField.Opacity = 1;
+            if (SearchStackpanel.Tag.ToString() == "Open")
+            {
+                SearchStackpanel.Tag = "Closed";
+                EnterStoryboard.Begin();
+                SearchField.Focus(FocusState.Programmatic);
+
+                SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(0xFF, 00, 69, 0x5C));
+                SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF));
+
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "searchOpen_click", "Search Open: from RecipeFeed", 0);
+            }
+            else if (SearchStackpanel.Tag.ToString() == "Closed")
+            {
+                SearchStackpanel.Tag = "Open";
+                ExitStoryboard.Begin();
+
+                SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
+                SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
+
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "searchClose_click", "Search Close: from RecipeFeed", 0);
+            }
+        }
+
+        private void SearchField_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ExitStoryboard.Begin();
+
+            SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
+            SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
     }
 }

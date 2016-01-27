@@ -7,6 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/CheckBoxStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid x:Name="grid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -28,15 +36,6 @@
                         <Setter Target="grid_phone.Visibility" Value="Visible"/>
                     </VisualState.Setters>
                 </VisualState>
-
-                <VisualState x:Name="Disabled">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame Value="Collapsed" KeyTime="0"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
@@ -97,7 +96,7 @@
                         <StackPanel>
                             <TextBlock Text="Ingredients" FontSize="24" FontWeight="Thin" Margin="25,10" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
-                            <StackPanel x:Name="IngredientCheckbox_Stackpanel" Margin="25,25,25,25">
+                            <StackPanel x:Name="IngredientCheckbox_Stackpanel" Margin="25,0">
                                 <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
                                 <CheckBox Content="bread" Foreground="#FF8E8E8E" />
                                 <CheckBox Content="milk" Foreground="#FF8E8E8E" />
@@ -109,7 +108,7 @@
                         <StackPanel>
                             <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Preparation_Grid, Mode=TwoWay}" Y2="0"/>
-                            <StackPanel x:Name="PurchasedIngredientCheckbox_Stackpanel" Margin="25,25,25,25">
+                            <StackPanel x:Name="PurchasedIngredientCheckbox_Stackpanel" Margin="25,0">
                                 <CheckBox Content="eggs" Foreground="#FF8E8E8E" />
                                 <CheckBox Content="bread" Foreground="#FF8E8E8E" />
                                 <CheckBox Content="milk" Foreground="#FF8E8E8E" />

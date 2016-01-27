@@ -30,6 +30,9 @@ namespace Whiskly
             this.InitializeComponent();
 
             SearchField.Opacity = 0;
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("ShoppingList");
         }
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)

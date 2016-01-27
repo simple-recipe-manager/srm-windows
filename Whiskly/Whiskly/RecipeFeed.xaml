@@ -102,8 +102,19 @@
             </FlipView>
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFF3F3F3" Height="50" VerticalAlignment="Top">
-
-                <TextBox Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search" VerticalAlignment="Center" Margin="25,9" BorderThickness="1"/>
+                <StackPanel x:Name="SearchStackpanel" Tag="Open" Orientation="Horizontal" Width="415" HorizontalAlignment="Right">
+                    <AutoSuggestBox x:Name="SearchField" Background="{x:Null}" BorderBrush="{x:Null}" LostFocus="SearchField_LostFocus" VerticalAlignment="Center" Margin="25,9,10,9" BorderThickness="1" Width="300" PlaceholderText="Search" UseSystemFocusVisuals="True">
+                        <AutoSuggestBox.Resources>
+                            <Storyboard x:Name="EnterStoryboard">
+                                <FadeInThemeAnimation Storyboard.TargetName="SearchField" />
+                            </Storyboard>
+                            <Storyboard x:Name="ExitStoryboard">
+                                <FadeOutThemeAnimation Storyboard.TargetName="SearchField" />
+                            </Storyboard>
+                        </AutoSuggestBox.Resources>
+                    </AutoSuggestBox>
+                    <TextBlock x:Name="SearchIcon" Text="&#xE71E;" FontFamily="Segoe MDL2 Assets" FontSize="26.667" Tapped="Search_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" TextAlignment="Center" />
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>
