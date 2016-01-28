@@ -103,6 +103,8 @@ namespace Whiskly
             newPurchasedCheckbox.IsChecked = true;
             newPurchasedCheckbox.Checked += new RoutedEventHandler(ToList_Checked);
 
+            //Shoppinglist_Stackpanel_Desktab.Children.IndexOf(sender as UIElement));
+            Shoppinglist_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
             RecentlyPurchased_Stackpanel_Desktab.Children.Insert(0, newPurchasedCheckbox);
 
             // track a custom event
@@ -121,6 +123,7 @@ namespace Whiskly
             newListCheckbox.IsChecked = false;
             newListCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
 
+            RecentlyPurchased_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
             Shoppinglist_Stackpanel_Desktab.Children.Add(newListCheckbox);
         }
     }
