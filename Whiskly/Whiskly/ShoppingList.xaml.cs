@@ -71,7 +71,7 @@ namespace Whiskly
             }
         }
 
-        private void Add_ToList_Clicked(object sender, RoutedEventArgs e)
+        private void Add_ToList_Click(object sender, RoutedEventArgs e)
         {
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
