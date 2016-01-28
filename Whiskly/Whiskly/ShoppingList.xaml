@@ -98,7 +98,7 @@
                             <TextBlock Text="Check ingredients off as you purchase them." FontWeight="Thin" Margin="25,0,25,10" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
                             <StackPanel x:Name="Shoppinglist_Stackpanel_Desktab" Margin="25,25,25,25">
-                                <CheckBox Content="eggs" IsChecked="True" />
+                                <CheckBox x:Name="soy sauce" Content="soy sauce" Checked="ToPurchased_Checked" />
                                 <CheckBox Content="bread" />
                                 <CheckBox Content="milk" />
                             </StackPanel>
@@ -121,7 +121,7 @@
                             <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
                             <TextBlock Text="Uncheck an ingredient to add it back to your shopping list." FontWeight="Thin" Margin="25,0,25,10" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
-                            <StackPanel x:Name="RecentlyPurchased_Stackpanel_Desktab" Margin="25,25,25,25">
+                            <StackPanel x:Name="RecentlyPurchased_Stackpanel_Desktab" Margin="25,25,25,25" VerticalAlignment="Bottom">
                                 <CheckBox Content="eggs" />
                                 <CheckBox Content="bread" />
                                 <CheckBox Content="milk" />

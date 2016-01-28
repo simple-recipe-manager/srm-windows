@@ -77,6 +77,7 @@ namespace Whiskly
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
 
             CheckBox newItemCheckbox = new CheckBox();
+            newItemCheckbox.Name = "Ingredient_";
             newItemCheckbox.Content = "Ingredient_";
 
             this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
@@ -88,6 +89,39 @@ namespace Whiskly
 
             SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
+        }
+
+        private void ToPurchased_Checked(object sender, RoutedEventArgs e)
+        {
+            Control control = (Control)sender;
+            //CheckBox control = sender as CheckBox;
+            String name = control.Name;
+
+            CheckBox newPurchasedCheckbox = new CheckBox();
+            newPurchasedCheckbox.Name = name;
+            newPurchasedCheckbox.Content = name;
+            newPurchasedCheckbox.IsChecked = true;
+            newPurchasedCheckbox.Checked += new RoutedEventHandler(ToList_Checked);
+
+            RecentlyPurchased_Stackpanel_Desktab.Children.Insert(0, newPurchasedCheckbox);
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "purchased_click", "Purchased: from ShoppingList", 0);
+        }
+
+        private void ToList_Checked(object sender, RoutedEventArgs e)
+        {
+            Control control = (Control)sender;
+            //CheckBox control = sender as CheckBox;
+            String name = control.Name;
+
+            CheckBox newListCheckbox = new CheckBox();
+            newListCheckbox.Name = name;
+            newListCheckbox.Content = name;
+            newListCheckbox.IsChecked = false;
+            newListCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
+
+            Shoppinglist_Stackpanel_Desktab.Children.Add(newListCheckbox);
         }
     }
 }
