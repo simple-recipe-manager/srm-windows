@@ -52,9 +52,52 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <FlipView x:Name="Recipe_FlipView" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" Margin="0,50,0,0"  >
+            <ScrollViewer x:Name="ShoppingList_ScrollViewer_Phone" Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Width="{Binding ActualWidth, ElementName=page, Mode=TwoWay}" Background="{x:Null}" VerticalScrollBarVisibility="Hidden" Margin="0,50,0,0">
+                <StackPanel>
+                    <Grid x:Name="ShoppingList_Grid_Phone" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="0" Margin="0,50,0,0" VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBlock Text="Ingredients" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                            <TextBlock Text="Check ingredients off as you purchase them." FontWeight="Thin" Margin="25,0,25,10" TextWrapping="Wrap" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid_Phone, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="Shoppinglist_Stackpanel_Phone" Margin="25,25,25,25">
+                                <CheckBox x:Name="soysauce_p" Content="soy sauce" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="bread_p" Content="bread" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="milk_p" Content="milk" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="tonicwater_p" Content="tonic water" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="vodka_p" Content="vodka" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="potatoes_p" Content="potatoes" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="vegtableoil_p" Content="vegtable oil" Checked="ToPurchased_Checked" />
+                                <CheckBox x:Name="peanuts_p" Content="peanuts" Checked="ToPurchased_Checked" />
+                            </StackPanel>
 
-            </FlipView>
+                            <Button x:Name="Add_ToList_Phone" Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
+                                        <TextBlock.RenderTransform>
+                                            <CompositeTransform Rotation="45"/>
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                    <TextBlock Text="Add Ingredient" Margin="0,5,0,0" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="RecentlyPurchased_Grid_Phone" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="2" Margin="0,50,0,0" VerticalAlignment="Top">
+                        <StackPanel VerticalAlignment="Top">
+                            <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                            <TextBlock Text="Uncheck an ingredient to add it back to your shopping list." FontWeight="Thin" Margin="25,0,25,10" TextWrapping="Wrap" />
+                            <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid_Phone, Mode=TwoWay}" Y2="0"/>
+                            <StackPanel x:Name="RecentlyPurchased_Stackpanel_Phone" Margin="25,25,25,25" VerticalAlignment="Bottom">
+                                <CheckBox x:Name="cheese_p" Content="cheese" IsChecked="True" Unchecked="ToList_Checked" />
+                                <CheckBox x:Name="salt_p" Content="salt" IsChecked="True" Unchecked="ToList_Checked" />
+                                <CheckBox x:Name="oranges_p"  Content="oranges" IsChecked="True" Unchecked="ToList_Checked"  />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
 
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Background="#FFF3F3F3" Height="50" VerticalAlignment="Top">
@@ -95,7 +138,7 @@
                     <Grid x:Name="ShoppingList_Grid" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="0" Margin="0,50,0,0" VerticalAlignment="Top">
                         <StackPanel>
                             <TextBlock Text="Ingredients" FontSize="24" FontWeight="Thin" Margin="25,10" />
-                            <TextBlock Text="Check ingredients off as you purchase them." FontWeight="Thin" Margin="25,0,25,10" />
+                            <TextBlock Text="Check ingredients off as you purchase them." FontWeight="Thin" Margin="25,0,25,10" TextWrapping="Wrap" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
                             <StackPanel x:Name="Shoppinglist_Stackpanel_Desktab" Margin="25,25,25,25">
                                 <CheckBox x:Name="soysauce" Content="soy sauce" Checked="ToPurchased_Checked" />
@@ -108,7 +151,7 @@
                                 <CheckBox x:Name="peanuts" Content="peanuts" Checked="ToPurchased_Checked" />
                             </StackPanel>
 
-                            <Button Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
+                            <Button x:Name="Add_ToList_Desktab" Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
                                         <TextBlock.RenderTransform>
@@ -124,7 +167,7 @@
                     <Grid x:Name="RecentlyPurchased_Grid" Background="#FFF6F6F6" CornerRadius="10" Grid.Column="2" Margin="0,50,0,0" VerticalAlignment="Top">
                         <StackPanel VerticalAlignment="Top">
                             <TextBlock Text="Recently Purchased" FontSize="24" FontWeight="Thin" Margin="25,10" />
-                            <TextBlock Text="Uncheck an ingredient to add it back to your shopping list." FontWeight="Thin" Margin="25,0,25,10" />
+                            <TextBlock Text="Uncheck an ingredient to add it back to your shopping list." FontWeight="Thin" Margin="25,0,25,10" TextWrapping="Wrap" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ShoppingList_Grid, Mode=TwoWay}" Y2="0"/>
                             <StackPanel x:Name="RecentlyPurchased_Stackpanel_Desktab" Margin="25,25,25,25" VerticalAlignment="Bottom">
                                 <CheckBox x:Name="cheese" Content="cheese" IsChecked="True" Unchecked="ToList_Checked" />

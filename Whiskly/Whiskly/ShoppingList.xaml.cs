@@ -29,6 +29,7 @@ namespace Whiskly
         {
             this.InitializeComponent();
 
+            // sets the search field to 0 opacity when the page is loaded so the animation on click works correctly
             SearchField.Opacity = 0;
 
             // track a page view
@@ -45,7 +46,10 @@ namespace Whiskly
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            // Opaccity can now be 1 because the storyboard handles all animation from here on out
             SearchField.Opacity = 1;
+
+            // Monitors the state of the stackpanel and performs the appropriate action when the icon is clicked
             if (SearchStackpanel.Tag.ToString() == "Open")
             {
                 SearchStackpanel.Tag = "Closed";
@@ -71,20 +75,6 @@ namespace Whiskly
             }
         }
 
-        private void Add_ToList_Click(object sender, RoutedEventArgs e)
-        {
-            // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
-
-            CheckBox newItemCheckbox = new CheckBox();
-            string content = "Ingredient 1";
-            newItemCheckbox.Content = content;
-            newItemCheckbox.Name = content.Replace(" ", "");
-            newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
-
-            this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
-        }
-
         private void SearchField_LostFocus(object sender, RoutedEventArgs e)
         {
             ExitStoryboard.Begin();
@@ -93,7 +83,34 @@ namespace Whiskly
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
 
-        // When checkboxes in the Purchased column are checked, this moves 
+        private void Add_ToList_Click(object sender, RoutedEventArgs e)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
+
+            // Gets parent of sender for use in determining correct destination stackpanel
+            Button control = sender as Button;
+            string ButtonName = control.Name;
+
+            // Creates new checkbox
+            CheckBox newItemCheckbox = new CheckBox();
+            string content = "Ingredient 1";
+            newItemCheckbox.Content = content;
+            newItemCheckbox.Name = content.Replace(" ", "");
+            newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
+
+            // Add new checkboxes to appropriate lists
+            if (ButtonName == "Add_ToList_Desktab")
+            {
+                this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
+            }
+            else if (ButtonName == "Add_ToList_Phone")
+            {
+                this.Shoppinglist_Stackpanel_Phone.Children.Add(newItemCheckbox);
+            }
+        }
+
+        // When checkboxes in the Purchased column are checked, this moves the checkbox to the List
         private void ToPurchased_Checked(object sender, RoutedEventArgs e)
         {
             // Gets name and content from checked checkbox
@@ -101,27 +118,44 @@ namespace Whiskly
             string name = control.Name;
             object content = control.Content;
 
-            // Creates new checkbox
+            // Gets parent of sender for use in determining correct destination stackpanel
+            FrameworkElement parent = (FrameworkElement)((CheckBox)sender).Parent;
+            string ParentName = parent.Name;
+
+            // Creates new checkbox (desktop)
             CheckBox newPurchasedCheckbox = new CheckBox();
             newPurchasedCheckbox.Name = name;
             newPurchasedCheckbox.Content = content;
             newPurchasedCheckbox.IsChecked = true;
             newPurchasedCheckbox.Unchecked += new RoutedEventHandler(ToList_Checked);
-            
+
             // Removes checkbox from list and moves to purchased
-            Shoppinglist_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
-            RecentlyPurchased_Stackpanel_Desktab.Children.Insert(0, newPurchasedCheckbox);
+            if (ParentName == "Shoppinglist_Stackpanel_Desktab")
+            {
+                Shoppinglist_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
+                RecentlyPurchased_Stackpanel_Desktab.Children.Insert(0, newPurchasedCheckbox);
+            }
+            else if (ParentName == "Shoppinglist_Stackpanel_Phone")
+            {
+                Shoppinglist_Stackpanel_Phone.Children.Remove((UIElement)this.FindName(name));
+                RecentlyPurchased_Stackpanel_Phone.Children.Insert(0, newPurchasedCheckbox);
+            }
 
             // Removes all checkboxes over 10 in the purchased stackpanel
-            if(RecentlyPurchased_Stackpanel_Desktab.Children.Count == 10)
+            if (RecentlyPurchased_Stackpanel_Desktab.Children.Count == 10)
             {
                 RecentlyPurchased_Stackpanel_Desktab.Children.RemoveAt(9);
+            }
+            if (RecentlyPurchased_Stackpanel_Phone.Children.Count == 10)
+            {
+                RecentlyPurchased_Stackpanel_Phone.Children.RemoveAt(9);
             }
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "purchased_click", "Purchased: from ShoppingList", 0);
         }
 
+        // When checkboxes in the List column are checked, this moves the checkbox to the Purchased column
         private void ToList_Checked(object sender, RoutedEventArgs e)
         {
             // Gets name and content from checked checkbox
@@ -129,16 +163,29 @@ namespace Whiskly
             string name = control.Name;
             object content = control.Content;
 
-            // Creates new checkbox
+            // Gets parent of sender for use in determining correct destination stackpanel
+            FrameworkElement parent = (FrameworkElement)((CheckBox)sender).Parent;
+            string ParentName = parent.Name;
+
+            // Creates new checkbox (desktop)
             CheckBox newListCheckbox = new CheckBox();
             newListCheckbox.Name = name;
             newListCheckbox.Content = content;
             newListCheckbox.IsChecked = false;
             newListCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
 
-            // Removes checkbox from purchased and moves to list
-            RecentlyPurchased_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
-            Shoppinglist_Stackpanel_Desktab.Children.Add(newListCheckbox);
+            if (ParentName == "RecentlyPurchased_Stackpanel_Desktab")
+            {
+                // Removes checkbox from purchased and moves to list (desktop)
+                RecentlyPurchased_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
+                Shoppinglist_Stackpanel_Desktab.Children.Add(newListCheckbox);
+            }
+            else if (ParentName == "RecentlyPurchased_Stackpanel_Phone")
+            {
+                // Removes checkbox from purchased and moves to list (phone0
+                RecentlyPurchased_Stackpanel_Phone.Children.Remove((UIElement)this.FindName(name));
+                Shoppinglist_Stackpanel_Phone.Children.Add(newListCheckbox);
+            }
         }
     }
 }
