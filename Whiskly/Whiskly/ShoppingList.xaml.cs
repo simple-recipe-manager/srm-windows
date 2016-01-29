@@ -77,8 +77,10 @@ namespace Whiskly
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
 
             CheckBox newItemCheckbox = new CheckBox();
-            newItemCheckbox.Name = "Ingredient_";
-            newItemCheckbox.Content = "Ingredient_";
+            string content = "Ingredient 1";
+            newItemCheckbox.Content = content;
+            newItemCheckbox.Name = content.Replace(" ", "");
+            newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
 
             this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
         }
@@ -91,21 +93,30 @@ namespace Whiskly
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
 
+        // When checkboxes in the Purchased column are checked, this moves 
         private void ToPurchased_Checked(object sender, RoutedEventArgs e)
         {
-            Control control = (Control)sender;
-            //CheckBox control = sender as CheckBox;
-            String name = control.Name;
+            // Gets name and content from checked checkbox
+            CheckBox control = sender as CheckBox;
+            string name = control.Name;
+            object content = control.Content;
 
+            // Creates new checkbox
             CheckBox newPurchasedCheckbox = new CheckBox();
             newPurchasedCheckbox.Name = name;
-            newPurchasedCheckbox.Content = name;
+            newPurchasedCheckbox.Content = content;
             newPurchasedCheckbox.IsChecked = true;
-            newPurchasedCheckbox.Checked += new RoutedEventHandler(ToList_Checked);
-
-            //Shoppinglist_Stackpanel_Desktab.Children.IndexOf(sender as UIElement));
+            newPurchasedCheckbox.Unchecked += new RoutedEventHandler(ToList_Checked);
+            
+            // Removes checkbox from list and moves to purchased
             Shoppinglist_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
             RecentlyPurchased_Stackpanel_Desktab.Children.Insert(0, newPurchasedCheckbox);
+
+            // Removes all checkboxes over 10 in the purchased stackpanel
+            if(RecentlyPurchased_Stackpanel_Desktab.Children.Count == 10)
+            {
+                RecentlyPurchased_Stackpanel_Desktab.Children.RemoveAt(9);
+            }
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "purchased_click", "Purchased: from ShoppingList", 0);
@@ -113,16 +124,19 @@ namespace Whiskly
 
         private void ToList_Checked(object sender, RoutedEventArgs e)
         {
-            Control control = (Control)sender;
-            //CheckBox control = sender as CheckBox;
-            String name = control.Name;
+            // Gets name and content from checked checkbox
+            CheckBox control = sender as CheckBox;
+            string name = control.Name;
+            object content = control.Content;
 
+            // Creates new checkbox
             CheckBox newListCheckbox = new CheckBox();
             newListCheckbox.Name = name;
-            newListCheckbox.Content = name;
+            newListCheckbox.Content = content;
             newListCheckbox.IsChecked = false;
             newListCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
 
+            // Removes checkbox from purchased and moves to list
             RecentlyPurchased_Stackpanel_Desktab.Children.Remove((UIElement)this.FindName(name));
             Shoppinglist_Stackpanel_Desktab.Children.Add(newListCheckbox);
         }

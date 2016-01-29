@@ -100,7 +100,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
-    <None Include="Whiskly_Key.pfx" />
+    <DesignData Include="Whiskly_Key.pfx" />
     <None Include="Whiskly_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
