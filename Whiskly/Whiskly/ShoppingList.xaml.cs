@@ -83,32 +83,122 @@ namespace Whiskly
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
 
-        private void Add_ToList_Click(object sender, RoutedEventArgs e)
+        private async void Add_Ingredient_ContentDialog(object sender, RoutedEventArgs e)
         {
-            // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
+            var dialog = new ContentDialog()
+            {
+                Title = "Add A New Ingredient",
+                //RequestedTheme = ElementTheme.Dark,
+                //FullSizeDesired = true,
+                MaxWidth = this.ActualWidth // Required for Mobile!
+            };
 
-            // Gets parent of sender for use in determining correct destination stackpanel
+            // Setup Content
+            var panel = new StackPanel();
+
+            Thickness margin_bottom = new Thickness(0, 10, 0, 25);
+
+            panel.Children.Add(new TextBlock
+            {
+                Text = "Enter the new ingredient including the quantity.",
+                TextWrapping = TextWrapping.Wrap,
+                Margin = margin_bottom,
+            });
+
+            var NewIngredient_TextBox = new TextBox
+            {
+                Name = "NewIngredient_TextBox",
+                PlaceholderText = "sugar (1 pound)"
+            };
+
+            //NewIngredient_TextBox.SetBinding(CheckBox.IsCheckedProperty, new Binding
+            //{
+            //    Source = dialog,
+            //    Path = new PropertyPath("IsPrimaryButtonEnabled"),
+            //    Mode = BindingMode.TwoWay,
+            //});
+
+            panel.Children.Add(NewIngredient_TextBox);
+            dialog.Content = panel;
+
             Button control = sender as Button;
-            string ButtonName = control.Name;
+            string senderButton = control.Name;
 
-            // Creates new checkbox
-            CheckBox newItemCheckbox = new CheckBox();
-            string content = "Ingredient 1";
-            newItemCheckbox.Content = content;
-            newItemCheckbox.Name = content.Replace(" ", "");
-            newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
+            // Add Buttons
+            dialog.PrimaryButtonText = "Add To List";
+                //dialog.IsPrimaryButtonEnabled = false;
+            dialog.PrimaryButtonClick += delegate {
+                //btn.Content = "Result: OK";
+                Debug.WriteLine("Result: Add To List");
+                string ingredientName = NewIngredient_TextBox.Text;
+                Add_ToList_Sender(senderButton, ingredientName);
+            };
 
-            // Add new checkboxes to appropriate lists
-            if (ButtonName == "Add_ToList_Desktab")
+            dialog.SecondaryButtonText = "Cancel";
+            dialog.SecondaryButtonClick += delegate {
+                //btn.Content = "Result: Cancel";
+                Debug.WriteLine("Result: Cancel");
+            };
+
+            // Show Dialog
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.None)
             {
-                this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
-            }
-            else if (ButtonName == "Add_ToList_Phone")
-            {
-                this.Shoppinglist_Stackpanel_Phone.Children.Add(newItemCheckbox);
+                //btn.Content = "Result: NONE";
+                Debug.WriteLine("Result: None");
             }
         }
+    
+        private void Add_ToList_Sender(string sender, string ingredient)
+        {
+            if (ingredient != "")
+            {
+                // Creates new checkbox
+                CheckBox newItemCheckbox = new CheckBox();
+                string content = ingredient;
+                newItemCheckbox.Content = content;
+                newItemCheckbox.Name = content.Replace(" ", "");
+                newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
+
+                // Add new checkboxes to appropriate lists
+                if (sender == "Add_ToList_Desktab")
+                {
+                    this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
+                }
+                else if (sender == "Add_ToList_Phone")
+                {
+                    this.Shoppinglist_Stackpanel_Phone.Children.Add(newItemCheckbox);
+                }
+            }
+        }
+
+        //private void Add_ToList_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // track a custom event
+        //    GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList", 0);
+
+
+        //    // Gets parent of sender for use in determining correct destination stackpanel
+        //    Button control = sender as Button;
+        //    string ButtonName = control.Name;
+
+        //    // Creates new checkbox
+        //    CheckBox newItemCheckbox = new CheckBox();
+        //    string content = "Ingredient 1";
+        //    newItemCheckbox.Content = content;
+        //    newItemCheckbox.Name = content.Replace(" ", "");
+        //    newItemCheckbox.Checked += new RoutedEventHandler(ToPurchased_Checked);
+
+        //    // Add new checkboxes to appropriate lists
+        //    if (ButtonName == "Add_ToList_Desktab")
+        //    {
+        //        this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
+        //    }
+        //    else if (ButtonName == "Add_ToList_Phone")
+        //    {
+        //        this.Shoppinglist_Stackpanel_Phone.Children.Add(newItemCheckbox);
+        //    }
+        //}
 
         // When checkboxes in the Purchased column are checked, this moves the checkbox to the List
         private void ToPurchased_Checked(object sender, RoutedEventArgs e)
