@@ -26,6 +26,7 @@
                         <Setter Target="MainNav.DisplayMode" Value="Inline"/>
                         <Setter Target="MainNav.OpenPaneLength" Value="250"/>
                         <Setter Target="MainNav.IsPaneOpen" Value="True"/>
+                        <Setter Target="Current_VisualState.Visibility" Value="Collapsed" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="narrowState">
@@ -34,11 +35,13 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MainNav.OpenPaneLength" Value="250"/>
+                        <Setter Target="Current_VisualState.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        <Image x:Name="Current_VisualState" Visibility="Collapsed" />
         <SplitView x:Name="MainNav" x:FieldModifier="public">
             <SplitView.Pane >
                 <Grid>

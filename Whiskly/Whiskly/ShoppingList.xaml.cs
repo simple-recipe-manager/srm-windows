@@ -110,9 +110,10 @@ namespace Whiskly
         // When ender key is released, new checkbox created with the textbox text
         private void Add_Ingredient_KeyUp(object sender, KeyRoutedEventArgs e)
         {
+            string textboxText = NewIngredient_Phone.Text;
             if (e.Key == VirtualKey.Enter)
             {
-                if (groupSender == "Add_ToList_Phone" && NewIngredient_Phone.Text != "")
+                if (groupSender == "Add_ToList_Phone" && !String.IsNullOrWhiteSpace(textboxText))
                 {
                     // track a custom event
                     GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList (phone)", 0);
@@ -131,7 +132,7 @@ namespace Whiskly
                     NewIngredient_Phone.Text = "";
                     NewIngredient_Phone.Visibility = Visibility.Collapsed;
                 }
-                else if (groupSender == "Add_ToList_Desktab" && NewIngredient_Desktab.Text != "")
+                else if (groupSender == "Add_ToList_Desktab" && !String.IsNullOrWhiteSpace(textboxText))
                 {
                     // track a custom event
                     GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList (desktab)", 0);

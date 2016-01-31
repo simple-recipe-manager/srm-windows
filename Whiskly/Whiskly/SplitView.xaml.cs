@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -45,12 +46,22 @@ namespace Whiskly
         {
             MainContentFrame.Navigate(typeof(RecipeFeed));
             PrivateButton.IsChecked = true;
+
+            if (Current_VisualState.Visibility == Visibility.Visible)
+            {
+                SplitView.splitviewPage.MainNav.IsPaneOpen = false;
+            }
         }
 
         private void ShoppingList_Checked(object sender, RoutedEventArgs e)
         {
             MainContentFrame.Navigate(typeof(ShoppingList));
             ShoppingButton.IsChecked = true;
+
+            if (Current_VisualState.Visibility == Visibility.Visible)
+            {
+                SplitView.splitviewPage.MainNav.IsPaneOpen = false;
+            }
         }
 
         private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
