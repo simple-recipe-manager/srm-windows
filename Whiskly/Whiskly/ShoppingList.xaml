@@ -71,7 +71,7 @@
                                 <CheckBox x:Name="peanuts_p" Content="peanuts" Checked="ToPurchased_Checked" />
                             </StackPanel>
 
-                            <TextBox x:Name="NewIngredient_Phone" KeyUp="Add_Ingredient_KeyUp" LostFocus="Add_Ingredient_LostFocus" Background="{x:Null}" PlaceholderText="e.g. sugar (1 pound)" Margin="25,0,25,25" Visibility="Collapsed" />
+                            <TextBox x:Name="NewIngredient_Phone" KeyUp="Add_Ingredient_KeyUp" LostFocus="Add_Ingredient_LostFocus" Background="{x:Null}" PlaceholderText="e.g. sugar (1 pound)" Margin="25,0,25,25" Visibility="Collapsed" SelectionHighlightColor="#FF26A69A" />
 
                             <Button x:Name="Add_ToList_Phone" Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
                                 <StackPanel Orientation="Vertical">
@@ -154,7 +154,7 @@
                                 <CheckBox x:Name="peanuts" Content="peanuts" Checked="ToPurchased_Checked" />
                             </StackPanel>
 
-                            <TextBox x:Name="NewIngredient_Desktab" KeyUp="Add_Ingredient_KeyUp" LostFocus="Add_Ingredient_LostFocus" Background="{x:Null}" PlaceholderText="e.g. sugar (1 pound)" Margin="25,0,25,25" Visibility="Collapsed" />
+                            <TextBox x:Name="NewIngredient_Desktab" KeyUp="Add_Ingredient_KeyUp" LostFocus="Add_Ingredient_LostFocus" Background="{x:Null}" PlaceholderText="e.g. sugar (1 pound)" Margin="25,0,25,25" Visibility="Collapsed" SelectionHighlightColor="#FF26A69A" />
 
                             <Button x:Name="Add_ToList_Desktab" Click="Add_ToList_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,0,0,25">
                                 <StackPanel Orientation="Vertical">

@@ -126,6 +126,10 @@ namespace Whiskly
 
                     // Add new chekbox to the bottom on the stackpanel
                     this.Shoppinglist_Stackpanel_Phone.Children.Add(newItemCheckbox);
+
+                    // Clears an hides the new ingredient textbox
+                    NewIngredient_Phone.Text = "";
+                    NewIngredient_Phone.Visibility = Visibility.Collapsed;
                 }
                 else if (groupSender == "Add_ToList_Desktab" && NewIngredient_Desktab.Text != "")
                 {
@@ -141,6 +145,10 @@ namespace Whiskly
 
                     // Add new chekbox to the bottom on the stackpanel
                     this.Shoppinglist_Stackpanel_Desktab.Children.Add(newItemCheckbox);
+
+                    // Clears an hides the new ingredient textbox
+                    NewIngredient_Desktab.Text = "";
+                    NewIngredient_Desktab.Visibility = Visibility.Collapsed;
                 }
             }
         }
