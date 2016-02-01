@@ -25,7 +25,7 @@
 
                 <StackPanel Grid.Row="1">
                     <StackPanel BorderThickness="25,15">
-                        <TextBlock x:Name="RecipeName_TextBlock" Text="{Binding Path=RecipeName}" FontWeight="Medium" FontSize="24" Foreground="#FF8E8E8E" Margin="0,0,0,10" />
+                        <TextBlock x:Name="RecipeName_TextBlock" Text="{Binding Path=RecipeTitle}" FontWeight="Medium" FontSize="24" Foreground="#FF8E8E8E" Margin="0,0,0,10" />
                         <TextBlock x:Name="RecipeDescription_TextBlock" Text="{Binding Path=RecipeDescription}" TextWrapping="Wrap" FontSize="21.333" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" MaxWidth="500" />
                     </StackPanel>
 
