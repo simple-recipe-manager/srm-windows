@@ -113,7 +113,7 @@ namespace Whiskly
             string textboxText = NewIngredient_Phone.Text;
             if (e.Key == VirtualKey.Enter)
             {
-                if (groupSender == "Add_ToList_Phone" && !String.IsNullOrWhiteSpace(textboxText))
+                if (groupSender == "Add_ToList_Phone" && !String.IsNullOrWhiteSpace(NewIngredient_Phone.Text))
                 {
                     // track a custom event
                     GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList (phone)", 0);
@@ -132,7 +132,7 @@ namespace Whiskly
                     NewIngredient_Phone.Text = "";
                     NewIngredient_Phone.Visibility = Visibility.Collapsed;
                 }
-                else if (groupSender == "Add_ToList_Desktab" && !String.IsNullOrWhiteSpace(textboxText))
+                else if (groupSender == "Add_ToList_Desktab" && !String.IsNullOrWhiteSpace(NewIngredient_Desktab.Text))
                 {
                     // track a custom event
                     GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addToList_click", "Add To List: from ShoppingList (desktab)", 0);
@@ -233,7 +233,7 @@ namespace Whiskly
             }
             else if (ParentName == "RecentlyPurchased_Stackpanel_Phone")
             {
-                // Removes checkbox from purchased and moves to list (phone0
+                // Removes checkbox from purchased and moves to list (phone)
                 RecentlyPurchased_Stackpanel_Phone.Children.Remove((UIElement)this.FindName(name));
                 Shoppinglist_Stackpanel_Phone.Children.Add(newListCheckbox);
             }

@@ -52,7 +52,7 @@
                     </ItemsPanelTemplate>
                 </FlipView.ItemsPanel>
 
-                <local:RecipeCard_Image Margin="25,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <local:RecipeCard_Image RecipeTitle="Recipe Name" RecipeDescription="Sample of what a description could be." RecipeImage="path to image" RecipeID="000000000" Margin="25,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                 <Rectangle Width="300" Height="200" Fill="Red" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
                 <Rectangle Width="300" Height="200" Fill="Green" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
@@ -95,7 +95,7 @@
                     </ItemsPanelTemplate>
                 </FlipView.ItemsPanel>
 
-                <local:RecipeCard_Image HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <local:RecipeCard_Image RecipeTitle="Recipe Name" RecipeDescription="Sample of what a description could be." RecipeImage="*path to image*" RecipeID="000000000" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Width="300" Height="200" Fill="Red" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
                 <Rectangle Width="300" Height="200" Fill="Green" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>
                 <Rectangle Width="300" Height="200" Fill="Yellow" RadiusX="5" RadiusY="5" Tapped="Rectangle_Tapped"/>

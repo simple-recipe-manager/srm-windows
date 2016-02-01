@@ -112,7 +112,7 @@
                 <Grid Grid.Column="0" Tapped="MenuHamburger_Clicked">
                     <TextBlock Text="&#xE700;" FontFamily="Segoe MDL2 Assets" Foreground="#FFB9B9B9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26.667" />
                 </Grid>
-                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search List" VerticalAlignment="Center" Margin="0,9,22,9" BorderThickness="1"/>
+                <TextBox Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}" TextAlignment="DetectFromContent" PlaceholderText="Search List" VerticalAlignment="Center" Margin="0,9,22,9" BorderThickness="1" TabIndex="0"/>
             </Grid>
         </Grid>
 
