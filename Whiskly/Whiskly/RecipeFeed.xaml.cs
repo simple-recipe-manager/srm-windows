@@ -9,6 +9,7 @@ using Whiskly.Pages.Recipes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,6 +30,7 @@ namespace Whiskly
         public RecipeFeed()
         {
             this.InitializeComponent();
+            pageWidth();
 
             SearchField.Opacity = 0;
 
@@ -83,6 +85,17 @@ namespace Whiskly
 
             SearchStackpanel.Background = new SolidColorBrush(Color.FromArgb(00, 00, 69, 0x5C));
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
+        }
+
+        //public var sizeMin; 
+
+        private void pageWidth()
+        {
+            var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+            var size = bounds.Width;
+            var sizeMin = size - 50;
+
+            RecipeCard.Width = sizeMin;
         }
     }
 }
