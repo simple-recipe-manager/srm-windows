@@ -96,6 +96,18 @@ namespace Whiskly
             var sizeMin = size - 50;
 
             RecipeCard.Width = sizeMin;
+
+            RecipeCard_Image newRecipeCard = new RecipeCard_Image();
+            newRecipeCard.RecipeID = "000000001";
+            newRecipeCard.Name = newRecipeCard.RecipeID;
+            newRecipeCard.RecipeTitle = "Created Title";
+            newRecipeCard.RecipeDescription = "Write this down because it exists.";
+            newRecipeCard.RecipeImage = "";
+            newRecipeCard.Width = sizeMin;
+            newRecipeCard.HorizontalAlignment = HorizontalAlignment.Center;
+            newRecipeCard.VerticalAlignment = VerticalAlignment.Center;
+
+            Recipe_FlipView.Items.Add(newRecipeCard);
         }
     }
 }
