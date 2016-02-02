@@ -35,6 +35,7 @@
                         <TextBlock Text="Share" Margin="0,0,20,0" FontSize="21.333" Foreground="#FFCDCDCD" />
                         <TextBlock Text="Open" FontSize="21.333" Foreground="#FF009688" Tapped="Open_Tapped" />
                     </StackPanel>
+                    <TextBlock x:Name="RecipeCardID" Text="{Binding Path=RecipeID}" Visibility="Collapsed" />
                 </StackPanel>
             </StackPanel>
         </Grid>

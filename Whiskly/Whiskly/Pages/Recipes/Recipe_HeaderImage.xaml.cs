@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,19 +24,23 @@ namespace Whiskly.Pages.Recipes
     /// </summary>
     public sealed partial class Recipe_HeaderImage : Page
     {
+        private string rID;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            rID = e.Parameter as string;
+            pageStart();
+        }
+
         public Recipe_HeaderImage()
         {
             this.InitializeComponent();
-
-            // track a page view
-            GoogleAnalytics.EasyTracker.GetTracker().SendView("Recipe ID #" + rID);
         }
 
-        public string rID;
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        public void pageStart()
         {
-            rID = e.Parameter as string;
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("Recipe ID #" + rID);
         }
 
         private void Back_Tapped(object sender, TappedRoutedEventArgs e)

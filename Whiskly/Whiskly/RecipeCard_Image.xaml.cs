@@ -21,22 +21,20 @@ namespace Whiskly
 {
     public partial class RecipeCard_Image : UserControl
     {
-        public int rID = 0;
+        public string ID;
 
         public RecipeCard_Image()
         {
             this.InitializeComponent();
             this.DefaultStyleKey = typeof(RecipeCard_Image);
             this.DataContext = this;
-
-            Debug.WriteLine("ID: " + RecipeID + " |");
         }
 
         public static readonly DependencyProperty RecipeIDProperty = DependencyProperty.Register(
             "RecipeID",                   // The name of the DependencyProperty
             typeof(string),               // The type of the DependencyProperty
             typeof(RecipeCard_Image),     // The type of the owner of the DependencyProperty
-            new PropertyMetadata("123456")
+            null
         );
 
         public string RecipeID
@@ -84,14 +82,16 @@ namespace Whiskly
             set { SetValue(RecipeImageProperty, value); }
         }
 
-        //public string recipeID = RecipeID;
-
         private void Open_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + RecipeID + ") Open: from recipe ID #" + RecipeID, 0);
+            ID = RecipeCardID.Text;
 
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage), RecipeID);
+            Debug.WriteLine("ID: " + ID + " |");
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + ID + ") Open: from recipe ID #" + ID, 0);
+
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage), ID);
         }
     }
 }
