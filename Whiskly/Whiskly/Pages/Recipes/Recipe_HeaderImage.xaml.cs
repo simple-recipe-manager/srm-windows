@@ -22,14 +22,19 @@ namespace Whiskly.Pages.Recipes
     /// </summary>
     public sealed partial class Recipe_HeaderImage : Page
     {
-        public int rID = 0;
-
         public Recipe_HeaderImage()
         {
             this.InitializeComponent();
 
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("Recipe ID #" + rID);
+        }
+
+        public string rID;
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            rID = e.Parameter as string;
         }
 
         private void Back_Tapped(object sender, TappedRoutedEventArgs e)

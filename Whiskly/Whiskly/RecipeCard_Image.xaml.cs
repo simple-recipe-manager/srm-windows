@@ -29,14 +29,14 @@ namespace Whiskly
             this.DefaultStyleKey = typeof(RecipeCard_Image);
             this.DataContext = this;
 
-            //turnPropertiesToTemplate();
+            Debug.WriteLine("ID: " + RecipeID + " |");
         }
 
         public static readonly DependencyProperty RecipeIDProperty = DependencyProperty.Register(
             "RecipeID",                   // The name of the DependencyProperty
             typeof(string),               // The type of the DependencyProperty
             typeof(RecipeCard_Image),     // The type of the owner of the DependencyProperty
-            new PropertyMetadata("")
+            new PropertyMetadata("123456")
         );
 
         public string RecipeID
@@ -84,33 +84,14 @@ namespace Whiskly
             set { SetValue(RecipeImageProperty, value); }
         }
 
-        public string recipeID;
-        public string recipeName;
-        public string recipeDescription;
-        public string recipeImage;
-
-        private void turnPropertiesToTemplate()
-        {
-            string recipeID = this.GetValue(RecipeIDProperty).ToString();
-            string recipeName = this.GetValue(RecipeTitleProperty).ToString();
-            string recipeDescription = this.GetValue(RecipeDescriptionProperty).ToString();
-            string recipeImage = this.GetValue(RecipeImageProperty).ToString();
-
-            Debug.WriteLine("ID: " + recipeID + "|");
-            Debug.WriteLine("Name: " + recipeName + "|");
-            Debug.WriteLine("Description: " + recipeDescription + "|");
-            Debug.WriteLine("Image: " + recipeImage + "|");
-
-            RecipeName_TextBlock.Text = recipeName;
-            RecipeDescription_TextBlock.Text = recipeDescription;
-        }
+        //public string recipeID = RecipeID;
 
         private void Open_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + RecipeID + ") Open: from recipe ID #" + recipeID, 0);
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + RecipeID + ") Open: from recipe ID #" + RecipeID, 0);
 
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage), RecipeID);
         }
     }
 }
