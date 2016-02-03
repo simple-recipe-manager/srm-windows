@@ -30,7 +30,7 @@ namespace Whiskly
         public RecipeFeed()
         {
             this.InitializeComponent();
-            pageWidth();
+            newCard("000000003", "Title of Recipe", "Description of recipe.", null);
 
             SearchField.Opacity = 0;
 
@@ -87,9 +87,7 @@ namespace Whiskly
             SearchIcon.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 00, 00, 00));
         }
 
-        //public var sizeMin; 
-
-        private void pageWidth()
+        private void newCard(string ID, string Title, string Descrition, ImageBrush Image)
         {
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             var size = bounds.Width;
