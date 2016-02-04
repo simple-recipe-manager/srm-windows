@@ -48,12 +48,15 @@
 
                     <Grid x:Name="RecipeHeader_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
                         <StackPanel>
-                            <!--<Border Width="{Binding ActualWidth, ElementName=RecipeHeader_Grid, Mode=TwoWay}" Height="200" CornerRadius="10,10,0,0">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="ms-appx:///Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill"/>
+                            <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Height="200">
+                                <Border.Background >
+                                    <ImageBrush Stretch="UniformToFill">
+                                        <ImageBrush.ImageSource>
+                                            <BitmapImage UriSource="ms-appx:///Assets/whiskly_login_app_background.jpg" />
+                                        </ImageBrush.ImageSource>
+                                    </ImageBrush>
                                 </Border.Background>
-                            </Border>-->
-                            <Image Source="ms-appx:///Assets/whiskly_login_app_background.jpg" Stretch="UniformToFill " />
+                            </Border>
                             <TextBlock x:Name="UploadedBy_TextBlock" Text="uploaded by George Hinchliffe" FontWeight="SemiLight" Margin="25,10" />
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=RecipeHeader_Grid, Mode=TwoWay}" Y2="0"/>
                             <TextBlock x:Name="RecipeDescription_TextBlock" Text="A mixed collection of nuts, soaked over night in a bath of salt water. " FontWeight="Thin" TextWrapping="Wrap" Margin="25,10,25,25" Foreground="#FF8E8E8E" FontSize="21.333" />
