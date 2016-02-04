@@ -44,24 +44,24 @@ namespace Whiskly
 
         private void PrivateRecipe_Checked(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Navigate(typeof(RecipeFeed));
-            PrivateButton.IsChecked = true;
-
             if (Current_VisualState.Visibility == Visibility.Visible)
             {
                 SplitView.splitviewPage.MainNav.IsPaneOpen = false;
             }
+
+            MainContentFrame.Navigate(typeof(RecipeFeed));
+            PrivateButton.IsChecked = true;
         }
 
         private void ShoppingList_Checked(object sender, RoutedEventArgs e)
         {
-            MainContentFrame.Navigate(typeof(ShoppingList));
-            ShoppingButton.IsChecked = true;
-
             if (Current_VisualState.Visibility == Visibility.Visible)
             {
                 SplitView.splitviewPage.MainNav.IsPaneOpen = false;
             }
+
+            MainContentFrame.Navigate(typeof(ShoppingList));
+            ShoppingButton.IsChecked = true;
         }
 
         private void New_Recipe_Onboarding(object sender, RoutedEventArgs e)
@@ -77,6 +77,11 @@ namespace Whiskly
 
         private void Settings_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            if (Current_VisualState.Visibility == Visibility.Visible)
+            {
+                SplitView.splitviewPage.MainNav.IsPaneOpen = false;
+            }
+
             MainContentFrame.Navigate(typeof(Settings));
         }
     }
