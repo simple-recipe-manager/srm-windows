@@ -137,10 +137,13 @@
     <Compile Include="Pages\Recipes\Recipe_HeaderImage.xaml.cs">
       <DependentUpon>Recipe_HeaderImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Seattings_Phone\Settings.xaml.cs">
+    <Compile Include="Pages\Settings_Phone\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecipeCard_Ad.xaml.cs">
+      <DependentUpon>RecipeCard_Ad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RecipeCard_Image.xaml.cs">
       <DependentUpon>RecipeCard_Image.xaml</DependentUpon>
     </Compile>
@@ -259,7 +262,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Seattings_Phone\Settings.xaml">
+    <Page Include="Pages\Settings_Phone\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecipeCard_Ad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

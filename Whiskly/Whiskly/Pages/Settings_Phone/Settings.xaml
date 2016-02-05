@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="Whiskly.Pages.Seattings_Phone.Settings"
+    x:Class="Whiskly.Pages.Settings_Phone.Settings"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Whiskly.Pages.Seattings_Phone"
+    xmlns:local="using:Whiskly.Pages.Settings_Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
