@@ -5,12 +5,12 @@
     xmlns:local="using:Whiskly"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    xmlns:controls="using:GooglePublisherTag"
+    mc:Ignorable="d">
 
     <Grid>
         <Grid CornerRadius="10" Background="#FFF6F6F6" Grid.Column="1" Grid.Row="1">
+            <controls:TagControl x:Name="MyTagControl" Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250"/>
         </Grid>
     </Grid>
 </UserControl>
