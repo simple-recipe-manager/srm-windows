@@ -26,6 +26,10 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         {
             this.InitializeComponent();
 
+            Cat_ComboBox.ItemsSource = CommonCompClass.Categories;
+            Cat_ComboBox.DisplayMemberPath = "category";
+            Cat_ComboBox.SelectedValuePath = "cat_id";
+
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RO_Title");
         }

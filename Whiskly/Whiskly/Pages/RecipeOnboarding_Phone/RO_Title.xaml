@@ -21,7 +21,7 @@
         <StackPanel Orientation="Vertical">
             <TextBlock x:Name="NewRecipeHeader" Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
             <TextBox x:Name="RecipeName_textBox" PlaceholderText="Recipe Name" FontWeight="Thin" Margin="25,80,25,0" BorderThickness="0,0,0,1" />
-            <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox, Mode=TwoWay}">
+            <ComboBox x:Name="Cat_ComboBox" PlaceholderText="Category" FontWeight="Thin" Margin="28,20,0,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox, Mode=TwoWay}">
                 <ComboBoxItem>Food</ComboBoxItem>
                 <ComboBoxItem>More Food</ComboBoxItem>
                 <ComboBoxItem>Even More Food</ComboBoxItem>

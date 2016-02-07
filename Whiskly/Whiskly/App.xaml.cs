@@ -44,6 +44,24 @@ namespace Whiskly
             Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.Landscape | Windows.Graphics.Display.DisplayOrientations.LandscapeFlipped;
 
             screenLock();
+
+            commonCompLoad();
+        }
+
+        private void commonCompLoad()
+        {
+            CommonCompClass.Categories = new List<CatClass>();
+            CommonCompClass.Categories.Add(new CatClass(0, "Appetizer"));
+            CommonCompClass.Categories.Add(new CatClass(1, "Breakfast & Brunch"));
+            CommonCompClass.Categories.Add(new CatClass(2, "Cocktails"));
+            CommonCompClass.Categories.Add(new CatClass(3, "Desserts"));
+            CommonCompClass.Categories.Add(new CatClass(4, "Drinks"));
+            CommonCompClass.Categories.Add(new CatClass(5, "Main Dishes"));
+            CommonCompClass.Categories.Add(new CatClass(6, "Pasta"));
+            CommonCompClass.Categories.Add(new CatClass(7, "Salad"));
+            CommonCompClass.Categories.Add(new CatClass(8, "Seafood"));
+            CommonCompClass.Categories.Add(new CatClass(9, "Soup"));
+            CommonCompClass.Categories.Add(new CatClass(10, "Vegetarian"));
         }
 
         public DateTime startTime = DateTime.Now;
@@ -60,12 +78,12 @@ namespace Whiskly
             }
         }
 
-    /// <summary>
-    /// Invoked when the application is launched normally by the end user.  Other entry points
-    /// will be used such as when the application is launched to open a specific file.
-    /// </summary>
-    /// <param name="e">Details about the launch request and process.</param>
-    protected override void OnLaunched(LaunchActivatedEventArgs e)
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// will be used such as when the application is launched to open a specific file.
+        /// </summary>
+        /// <param name="e">Details about the launch request and process.</param>
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG

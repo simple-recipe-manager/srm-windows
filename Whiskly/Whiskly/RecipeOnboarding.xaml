@@ -58,15 +58,7 @@
                     <StackPanel Orientation="Vertical">
                         <TextBlock Text="New&#10;Recipe" FontSize="64" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFCDCDCD" TextWrapping="Wrap" />
                         <TextBox x:Name="RecipeName_textBox_desktab" PlaceholderText="Recipe Name" Margin="25,80,25,0" />
-                        <ComboBox PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox_desktab, Mode=TwoWay}">
-                            <ComboBoxItem>Food</ComboBoxItem>
-                            <ComboBoxItem>More Food</ComboBoxItem>
-                            <ComboBoxItem>Even More Food</ComboBoxItem>
-                            <ComboBoxItem>Abbas Amount</ComboBoxItem>
-                            <ComboBoxItem>Less Food</ComboBoxItem>
-                            <ComboBoxItem>Even Less Food</ComboBoxItem>
-                            <ComboBoxItem>George Amount</ComboBoxItem>
-                        </ComboBox>
+                        <ComboBox x:Name="Cat_ComboBox" PlaceholderText="Category" FontWeight="Thin" Margin="25,20,25,0" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=RecipeName_textBox_desktab, Mode=TwoWay}" />
                         <TextBox x:Name="RecipeDescription_textBox_desktab" PlaceholderText="Recipe Description" Margin="25,50,25,0" TextWrapping="Wrap" />
                     </StackPanel>
                     <Grid VerticalAlignment="Bottom">

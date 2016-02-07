@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Whiskly.Pages.RecipeOnboarding_Phone;
 using Windows.Foundation;
@@ -33,6 +36,10 @@ namespace Whiskly
         public RecipeOnboarding()
         {
             this.InitializeComponent();
+
+            Cat_ComboBox.ItemsSource = CommonCompClass.Categories;
+            Cat_ComboBox.DisplayMemberPath = "category";
+            Cat_ComboBox.SelectedValuePath = "cat_id";
 
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeOnboarding");
