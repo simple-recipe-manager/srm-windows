@@ -4,10 +4,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Whiskly.Pages;
 using Whiskly.Pages.Recipes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -37,6 +40,56 @@ namespace Whiskly
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeFeed");
         }
+
+        #region Saving / Loading MyData 
+        private const string _myFileLocation = "RecipeStore.txt";
+
+        public static async Task<List<string>> GetMyData()
+        {
+            // If you're saving your stuff just on this device
+            var readStream =
+                await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(_myFileLocation);
+
+            // If there is no MyData, then we haven't created our MyData file yet
+            if (readStream == null)
+                return new List<string>(); ;
+
+            DataContractSerializer stuffSerializer =
+                new DataContractSerializer(typeof(List<string>));
+
+            var setResult = (List<string>)stuffSerializer.ReadObject(readStream);
+
+            return setResult;
+        }
+
+        public static async Task<bool> SaveMyData(List<string> saveData)
+        {
+            try
+            {
+
+                StorageFile savedStuffFile =
+                    await ApplicationData.Current.LocalFolder.CreateFileAsync(_myFileLocation,
+                    CreationCollisionOption.ReplaceExisting);
+
+                using (Stream writeStream =
+                    await savedStuffFile.OpenStreamForWriteAsync())
+                {
+                    DataContractSerializer stuffSerializer =
+                        new DataContractSerializer(typeof(List<string>));
+
+                    stuffSerializer.WriteObject(writeStream, saveData);
+                    await writeStream.FlushAsync();
+                    writeStream.Dispose();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("ERROR: unable to save MyData", e);
+                //return false;
+            }
+        }
+        #endregion
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
         {
