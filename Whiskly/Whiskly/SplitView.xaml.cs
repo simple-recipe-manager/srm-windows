@@ -53,6 +53,17 @@ namespace Whiskly
             PrivateButton.IsChecked = true;
         }
 
+        private void PublicRecipe_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Current_VisualState.Visibility == Visibility.Visible)
+            {
+                SplitView.splitviewPage.MainNav.IsPaneOpen = false;
+            }
+
+            MainContentFrame.Navigate(typeof(LoadAnimation));
+            PublicButton.IsChecked = true;
+        }
+
         private void ShoppingList_Checked(object sender, RoutedEventArgs e)
         {
             if (Current_VisualState.Visibility == Visibility.Visible)

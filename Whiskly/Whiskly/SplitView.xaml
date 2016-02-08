@@ -59,7 +59,7 @@
                         <RadioButton x:Name="PrivateButton" Tag="&#xE77B;" Content="Private" Style="{StaticResource SplitViewNavButtonStyle}" Checked="PrivateRecipe_Checked"/>
 
                         <!-- Public button -->
-                        <RadioButton x:Name="PublicButton" Tag="&#xE774;" Content="Public" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="PublicButton" Tag="&#xE774;" Content="Public" Style="{StaticResource SplitViewNavButtonStyle}" Checked="PublicRecipe_Checked" />
 
                         <!-- Family button -->
                         <RadioButton x:Name="FamilyButton" Tag="&#xE716;" Content="Family" Style="{StaticResource SplitViewNavButtonStyle}" />

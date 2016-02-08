@@ -110,6 +110,9 @@
     <Compile Include="CatClass.cs" />
     <Compile Include="CommonCompClass.cs" />
     <Compile Include="DirectionClass.cs" />
+    <Compile Include="LoadAnimation.xaml.cs">
+      <DependentUpon>LoadAnimation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

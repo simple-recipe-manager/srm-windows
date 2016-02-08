@@ -7,10 +7,45 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="LogoAnimation"/>
+        <Storyboard x:Name="LogoAnimation" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="image">
+                <SplineDoubleKeyFrame KeyTime="0" Value="-9"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="15"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:1.5" Value="15"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:2" Value="-9"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
-    <Grid Background="White">
-        <Image Source="Assets/whiskly_logo_mark_1c.png" Width="75" Height="75" />
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="image.Width" Value="150"/>
+                        <Setter Target="image.Height" Value="150"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="image.Width" Value="75"/>
+                        <Setter Target="image.Height" Value="75"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    
+        <Image x:Name="image" Source="Assets/whiskly_logo_mark_1c.png" >
+            <Image.Projection>
+                <PlaneProjection/>
+            </Image.Projection>
+        </Image>
     </Grid>
 </Page>
