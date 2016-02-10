@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid CornerRadius="10" Background="#FFF6F6F6" Grid.Column="1" Grid.Row="1">
-            <controls:TagControl x:Name="MyTagControl" Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250"/>
+            <controls:TagControl x:Name="MyTagControl" Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         </Grid>
     </Grid>
 </UserControl>

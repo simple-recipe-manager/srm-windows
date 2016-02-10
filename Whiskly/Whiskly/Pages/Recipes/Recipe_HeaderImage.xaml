@@ -74,7 +74,7 @@
                     </Grid>
 
                     <Grid x:Name="Ad_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
-                        <controls:TagControl x:Name="MyTagControl" Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250" Margin="0,15"/>
+                        <controls:TagControl x:Name="MyTagControl" Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250" Margin="0,15" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                     </Grid>
 
                     <Grid x:Name="Ingredients_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
@@ -216,7 +216,7 @@
                             </Grid>
 
                             <Grid x:Name="Ad_Grid_Desktab" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Column1_Desktab, Mode=TwoWay}" Margin="0,0,0,25">
-                                <controls:TagControl Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250" Margin="0,15"/>
+                                <controls:TagControl Tag="/80408259/WHISK_300x250_AdCard" Width="300" Height="250" Margin="0,15" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
                             </Grid>
                         </StackPanel>
 
