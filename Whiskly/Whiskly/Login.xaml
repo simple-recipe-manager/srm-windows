@@ -12,11 +12,21 @@
             <VisualStateGroup>
                 <VisualState x:Name="wideState">
                     <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1025" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="grid_desktab.Visibility" Value="Visible"/>
+                        <Setter Target="grid_phone.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="medState">
+                    <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="641" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="grid_desktab.Visibility" Value="Visible"/>
                         <Setter Target="grid_phone.Visibility" Value="Collapsed"/>
+                        <Setter Target="loginButton_Stackpanel.Orientation" Value="Vertical" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="narrowState">
@@ -73,7 +83,7 @@
                 <PasswordBox x:Name="Password_PasswordBox_desktab" BorderBrush="#FFDFDFDF" PlaceholderText="Password" Padding="10,5,10,7" BorderThickness="0,0.5" KeyDown="Submit_KeyDown" />
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" BorderThickness="0,0,0,15">
+                <StackPanel x:Name="loginButton_Stackpanel" Orientation="Horizontal" HorizontalAlignment="Center" BorderThickness="0,0,0,15">
                     <Button x:Name="Login_Facebook_desktab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF4C66A4" Click="Login_Facebook_Click" Margin="0,0,10,0">
                         <StackPanel Orientation="Horizontal" Margin="0,2.5">
                             <Image Grid.Column="0" Source="Assets/FB-f-Logo__white_512.png" Width="25" />
