@@ -27,6 +27,8 @@
                         <Setter Target="grid_desktab.Visibility" Value="Visible"/>
                         <Setter Target="grid_phone.Visibility" Value="Collapsed"/>
                         <Setter Target="loginButton_Stackpanel.Orientation" Value="Vertical" />
+                        <Setter Target="Login_Amazon_desktab.Margin" Value="0" />
+                        <Setter Target="Login_Facebook_desktab.Margin" Value="0,0,0,10" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="narrowState">
