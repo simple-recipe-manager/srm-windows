@@ -53,7 +53,8 @@ namespace Whiskly.Pages.Recipes
 
         private void ToShoppingList_Clicked(object sender, TappedRoutedEventArgs e)
         {
-            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
+            SplitView.splitviewPage.MainContentFrame.Navigate(typeof(ShoppingList));
+            SplitView.splitviewPage.ShoppingButton.IsChecked = true;
         }
     }
 }

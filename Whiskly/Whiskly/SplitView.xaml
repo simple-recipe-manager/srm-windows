@@ -67,10 +67,10 @@
                         <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0"/>
 
                         <!-- Family button -->
-                        <RadioButton x:Name="ShoppingButton" Tag="&#xE719;" Content=" Shopping List" Style="{StaticResource SplitViewNavButtonStyle}" Checked="ShoppingList_Checked" />
+                        <RadioButton x:Name="ShoppingButton" Tag="&#xE719;" Content=" Shopping List" Style="{StaticResource SplitViewNavButtonStyle}" x:FieldModifier="public" Checked="ShoppingList_Checked" />
 
                         <!-- Family button -->
-                        <RadioButton x:Name="DeviceButton" Tag="&#xE83B;" Content="Devices" Style="{StaticResource SplitViewNavButtonStyle}" />
+                        <RadioButton x:Name="DeviceButton" Tag="&#xE83B;" Content="Devices" Style="{StaticResource SplitViewNavButtonStyle}" x:FieldModifier="public" />
                     </StackPanel>
 
                     <Grid VerticalAlignment="Bottom" Margin="0,0,0,15">
