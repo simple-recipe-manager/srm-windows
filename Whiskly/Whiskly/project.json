@@ -1,10 +1,12 @@
 ﻿{
   "dependencies": {
+    "AdDuplexWin10": "10.0.1.1",
     "AWSSDK.CognitoIdentity": "3.1.0.6",
     "AWSSDK.CognitoSync": "3.1.0.5",
     "AWSSDK.SyncManager": "3.1.0.1",
     "GoogleAnalyticsSDK": "1.3.0",
     "GooglePublisherTag": "1.0.2",
+    "Microsoft.AdMediator.Universal.AdDuplex": "2.1.0",
     "Microsoft.ApplicationInsights": "1.2.3",
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.2.3",
     "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
