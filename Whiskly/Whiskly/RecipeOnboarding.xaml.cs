@@ -12,6 +12,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.System;
+using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -71,11 +73,36 @@ namespace Whiskly
             // track a timing (how long it takes your app to run a specific task)
             GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "Recipe Onboarding View Time", "RecipeOnboarding", "Exit By Finish");
 
+            SolidColorBrush errorRed = new SolidColorBrush(Color.FromArgb(255, 220, 20, 60));
+
+            if (RecipeName_textBox_desktab.Text == "")
+            {
+                RecipeName_textBox_desktab.BorderBrush = errorRed;
+                return;
+            }
+
+            if (Cat_ComboBox.SelectedItem == null)
+            {
+                Cat_ComboBox.BorderBrush = errorRed;
+                return;
+            }
+
+            if (YieldTextBox.Text == "")
+            {
+                YieldTextBox.Text = "1  ";
+            }
+
+            if (TemperatureTextBox.Text == "")
+            {
+                TemperatureTextBox.Text = "0   ";
+            }
+
             var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
             // read recipeBook to memory
             RecipeClass newRecipe = new RecipeClass();
             List<RecipeClass> recipeBook = buildRecipeBook(newRecipe);
+            //roamingSettings.Values["recipeBook"] = recipeBook;
 
             // navigate back to recipe feed
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
@@ -135,6 +162,27 @@ namespace Whiskly
 
             return recipeBook;
         }
+
+        //private async void EmptySender()
+        //{
+        //    // Create a MessageDialog
+        //    var messageDialog = new MessageDialog("This device is not connected to the internet. Until an active internet connection is established, the application can not continue. Check the network status and then retry.", "Empty Fields");
+        //    // Or create a separate callback for different commands
+
+        //    messageDialog.Commands.Add(new UICommand(
+        //        "Retry", new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+        //    // Set CommandIndex. 0 means default.
+        //    messageDialog.DefaultCommandIndex = 0;
+
+        //    // Show MessageDialog
+        //    await messageDialog.ShowAsync();
+        //}
+
+        //private void CommandInvokedHandler(IUICommand command)
+        //{
+        //    refreshPage();
+        //}
 
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
         {
