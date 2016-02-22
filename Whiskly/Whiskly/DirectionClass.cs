@@ -8,8 +8,8 @@ namespace Whiskly
 {
     class DirectionClass
     {
-        int StepID { get; set; }
-        string StepName { get; set; }
-        string StepDirection { get; set; }
+        public int StepID { get; set; }
+        public string StepName { get; set; }
+        public string StepDirection { get; set; }
     }
 }

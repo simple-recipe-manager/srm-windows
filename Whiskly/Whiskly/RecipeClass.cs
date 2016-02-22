@@ -8,16 +8,16 @@ namespace Whiskly
 {
     class RecipeClass
     {
-        int ID { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        CatClass Category { get; set; }
-        List<string> Ingredients { get; set; }
-        List<DirectionClass> Directions { get; set; }
-        int Yeild { get; set; }
-        int PrepTime { get; set; }
-        int CookTime { get; set; }
-        int Temp { get; set; }
-        string Image { get; set; }
+        public Guid ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Category { get; set; }
+        public List<string> Ingredients { get; set; }
+        public List<DirectionClass> Directions { get; set; }
+        public string Yeild { get; set; }
+        public TimeSpan PrepTime { get; set; }
+        public TimeSpan CookTime { get; set; }
+        public string Temp { get; set; }
+        public string Image { get; set; }
     }
 }

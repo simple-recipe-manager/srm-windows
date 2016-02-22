@@ -71,8 +71,69 @@ namespace Whiskly
             // track a timing (how long it takes your app to run a specific task)
             GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "Recipe Onboarding View Time", "RecipeOnboarding", "Exit By Finish");
 
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            // read recipeBook to memory
+            RecipeClass newRecipe = new RecipeClass();
+            List<RecipeClass> recipeBook = buildRecipeBook(newRecipe);
+
+            // navigate back to recipe feed
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
+        }
+
+        private List<RecipeClass> buildRecipeBook(RecipeClass newRecipe)
+        {
+            // read local storage to get the list of existing recipes, and store into a list in memory
+            List<RecipeClass> recipeBook = new List<RecipeClass>();
+
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            List<RecipeClass> recipeBookStore = (List<RecipeClass>)roamingSettings.Values["recipeBook"];
+            if (recipeBookStore != null)
+            {
+                recipeBook = recipeBookStore;
+            }
+
+            // get the new recipe from the UI and store into an object in memory
+            newRecipe.ID = Guid.NewGuid();
+            newRecipe.Name = RecipeName_textBox_desktab.Text;
+            newRecipe.Description = RecipeDescription_textBox_desktab.Text;
+            newRecipe.Category = Cat_ComboBox.SelectedItem.ToString();
+                List<string> ingredList = new List<string>();
+                foreach(TextBox t in IngredientsStackPanel.Children)
+                {
+                    string ingredient = t.Text;
+                    ingredList.Add(ingredient);
+                }
+            newRecipe.Ingredients = ingredList;
+                List<DirectionClass> directionList = new List<DirectionClass>();
+                foreach(StackPanel sp in DirectionsStackPanel.Children)
+                {
+                    DirectionClass newDirection = new DirectionClass();
+                    newDirection.StepID = DirectionsStackPanel.Children.IndexOf(sp);
+                    foreach (TextBox t in sp.Children)
+                    {
+                        if(t.Tag.ToString() == "step")
+                        {
+                            newDirection.StepName = t.Text;
+                        }
+                        if(t.Tag.ToString() == "direction")
+                        {
+                            newDirection.StepDirection = t.Text;
+                        }
+                    }
+                    directionList.Add(newDirection);
+                }
+            newRecipe.Directions = directionList;
+            newRecipe.Yeild = YieldTextBox.Text.Substring(0, YieldTextBox.Text.Length - 2);
+            newRecipe.PrepTime = RecipePrepTime_timepicker_desktab.Time;
+            newRecipe.CookTime = RecipeCookTime_timepicker_desktab.Time;
+            newRecipe.Temp = TemperatureTextBox.Text.Substring(0, TemperatureTextBox.Text.Length - 3);
+
+            // append the new recipe to the list, and return the list
+            recipeBook.Add(newRecipe);
+
+            return recipeBook;
         }
 
         private void Add_Ingredient_Click(object sender, RoutedEventArgs e)
@@ -108,11 +169,13 @@ namespace Whiskly
             TextBox StepTextbox = new TextBox();
             StepTextbox.Name = "Step_" + currentStackpanel;
             StepTextbox.Header = "Step " + currentStackpanel;
+            StepTextbox.Tag = "step";
             StepTextbox.PlaceholderText = "Step " + currentStackpanel;
             StepTextbox.Margin = new Thickness(0, 20, 0, 0);
 
             TextBox DirectionTextbox = new TextBox();
             DirectionTextbox.Name = "Direction_" + currentStackpanel;
+            DirectionTextbox.Tag = "direction";
             DirectionTextbox.PlaceholderText = "Directions for step " + currentStackpanel;
             DirectionTextbox.Margin = new Thickness(0, 10, 0, 0);
             DirectionTextbox.TextWrapping = TextWrapping.Wrap;

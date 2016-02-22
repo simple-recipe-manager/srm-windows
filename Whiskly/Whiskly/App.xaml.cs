@@ -52,55 +52,55 @@ namespace Whiskly
 
         public string adFree;
 
-        #region Saving / Loading MyData 
-        private const string _myFileLocation = "RecipeStore.txt";
+        //#region Saving / Loading MyData 
+        //private const string _myFileLocation = "RecipeStore.txt";
 
-        public static async Task<List<string>> GetMyData()
-        {
-            // If you're saving your stuff just on this device
-            var readStream =
-                await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(_myFileLocation);
+        //public static async Task<List<string>> GetMyData()
+        //{
+        //    // If you're saving your stuff just on this device
+        //    var readStream =
+        //        await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(_myFileLocation);
 
-            // If there is no MyData, then we haven't created our MyData file yet
-            if (readStream == null)
-                return new List<string>(); ;
+        //    // If there is no MyData, then we haven't created our MyData file yet
+        //    if (readStream == null)
+        //        return new List<string>(); ;
 
-            DataContractSerializer stuffSerializer =
-                new DataContractSerializer(typeof(List<string>));
+        //    DataContractSerializer stuffSerializer =
+        //        new DataContractSerializer(typeof(List<string>));
 
-            var setResult = (List<string>)stuffSerializer.ReadObject(readStream);
+        //    var setResult = (List<string>)stuffSerializer.ReadObject(readStream);
 
-            return setResult;
-        }
+        //    return setResult;
+        //}
 
-        public static async Task<bool> SaveMyData(List<string> saveData)
-        {
-            try
-            {
+        //public static async Task<bool> SaveMyData(List<string> saveData)
+        //{
+        //    try
+        //    {
 
-                StorageFile savedStuffFile =
-                    await ApplicationData.Current.LocalFolder.CreateFileAsync(_myFileLocation,
-                    CreationCollisionOption.ReplaceExisting);
+        //        StorageFile savedStuffFile =
+        //            await ApplicationData.Current.LocalFolder.CreateFileAsync(_myFileLocation,
+        //            CreationCollisionOption.ReplaceExisting);
 
-                using (Stream writeStream =
-                    await savedStuffFile.OpenStreamForWriteAsync())
-                {
-                    DataContractSerializer stuffSerializer =
-                        new DataContractSerializer(typeof(List<string>));
+        //        using (Stream writeStream =
+        //            await savedStuffFile.OpenStreamForWriteAsync())
+        //        {
+        //            DataContractSerializer stuffSerializer =
+        //                new DataContractSerializer(typeof(List<string>));
 
-                    stuffSerializer.WriteObject(writeStream, saveData);
-                    await writeStream.FlushAsync();
-                    writeStream.Dispose();
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("ERROR: unable to save MyData", e);
-                //return false;
-            }
-        }
-        #endregion
+        //            stuffSerializer.WriteObject(writeStream, saveData);
+        //            await writeStream.FlushAsync();
+        //            writeStream.Dispose();
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception("ERROR: unable to save MyData", e);
+        //        //return false;
+        //    }
+        //}
+        //#endregion
 
         private void commonCompLoad()
         {
