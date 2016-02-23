@@ -123,6 +123,7 @@ namespace Whiskly
 
             // get the new recipe from the UI and store into an object in memory
             newRecipe.ID = Guid.NewGuid();
+            newRecipe.Date = DateTime.UtcNow;
             newRecipe.Name = RecipeName_textBox_desktab.Text;
             newRecipe.Description = RecipeDescription_textBox_desktab.Text;
             newRecipe.Category = Cat_ComboBox.SelectedItem.ToString();
