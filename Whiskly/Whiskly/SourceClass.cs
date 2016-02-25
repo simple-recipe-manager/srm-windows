@@ -10,8 +10,9 @@ namespace Whiskly
     {
         public string Author { get; set; }
         public string Title { get; set; }
+        public string Website { get; set; }
         public string Type { get; set; }
-        public string Web { get; set; }
+        public string Address { get; set; }
         public string ISBN { get; set; }
         public string Page { get; set; }
     }

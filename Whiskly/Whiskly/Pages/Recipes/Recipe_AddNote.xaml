@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="Whiskly.Pages.Recipes.Recipe_AddNote"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Whiskly.Pages.Recipes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Styles/TimePickerStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="../../Styles/TextBoxRightStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" Margin="0,0,0,47" >
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Notes &amp; Sources" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
+                <StackPanel x:Name="NotesSource_StackPanel_Phone" Orientation="Vertical" Margin="25,25,25,0">
+                    <Pivot>
+                        <Pivot.Items>
+                            <PivotItem Header="Note">
+                                <StackPanel x:Name="Notes_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
+                                    <TextBlock Text="Add New Note" />
+                                    <TextBox PlaceholderText="recipe notes" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                </StackPanel>
+                            </PivotItem>
+                            <PivotItem Header="Source">
+                                <StackPanel x:Name="Source_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
+                                    <TextBlock Text="Add New Source" />
+                                    <ComboBox x:Name="Source_ComboBox" PlaceholderText="Category" Margin="0,25,0,0" FontWeight="Thin" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=Source_Stackpanel_Phone, Mode=TwoWay}" SelectedIndex="0">
+                                        <ComboBoxItem>Web</ComboBoxItem>
+                                        <ComboBoxItem>Book</ComboBoxItem>
+                                    </ComboBox>
+                                    
+                                    <StackPanel x:Name="WebSource_Stackpanel" Orientation="Vertical" Margin="0,25,0,0">
+                                        <TextBox PlaceholderText="Website Title" TextWrapping="Wrap"/>
+                                        <TextBox PlaceholderText="Website Address" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="BookSource_Stackpanel" Orientation="Vertical" Margin="0,25,0,0" Visibility="Collapsed">
+                                        <TextBox PlaceholderText="Book Title" TextWrapping="Wrap"/>
+                                        <TextBox PlaceholderText="Author" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox PlaceholderText="Page Number" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox PlaceholderText="ISBN" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </PivotItem>
+                        </Pivot.Items>
+                    </Pivot>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" BorderBrush="#FFDDDDDD" BorderThickness="0,0,1,0">
+                <TextBlock Padding="0,0,0,15" Text="Cancel" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Cancel_Clicked" Foreground="#FFDDDDDD" />
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock Padding="0,0,0,15" Text="Add" FontSize="24" TextAlignment="Center" FontWeight="Thin" Tapped="Add_Clicked" Foreground="#FF26A69A" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
