@@ -136,7 +136,15 @@
 
                     <Grid x:Name="Notes_Grid" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Recipe_StackPanel, Mode=TwoWay}" Margin="0,0,0,25">
                         <StackPanel>
-                            <TextBlock Text="Notes" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                            <Grid Margin="25,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Notes" FontSize="24" FontWeight="Thin" />
+                                <TextBlock Grid.Column="2" Text="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="24" VerticalAlignment="Center" Tapped="AddNote_Clicked" Foreground="#FF8E8E8E" />
+                            </Grid>
                             <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Notes_Grid, Mode=TwoWay}" Y2="0"/>
                             <StackPanel x:Name="NotesMainStackpanel" Margin="25">
                                 <StackPanel x:Name="NoteStackpanel_1" Margin="0,0,0,10">
@@ -289,7 +297,15 @@
 
                             <Grid x:Name="Notes_Grid_Desktab" Background="White" CornerRadius="10" Width="{Binding ActualWidth, ElementName=Column2_Desktab, Mode=TwoWay}" Margin="0,0,0,25">
                                 <StackPanel>
-                                    <TextBlock Text="Notes" FontSize="24" FontWeight="Thin" Margin="25,10" />
+                                    <Grid Margin="25,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="Notes" FontSize="24" FontWeight="Thin" />
+                                        <TextBlock Grid.Column="2" Text="&#xE710;" FontFamily="Segoe MDL2 Assets" FontSize="24" VerticalAlignment="Center" Tapped="AddNote_Clicked" Foreground="#FF8E8E8E" />
+                                    </Grid>
                                     <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=Notes_Grid_Desktab, Mode=TwoWay}" Y2="0"/>
                                     <StackPanel x:Name="NotesMainStackpanel_Desktab" Margin="25">
                                         <StackPanel x:Name="NoteStackpanel_1_Desktab" Margin="0,0,0,10">

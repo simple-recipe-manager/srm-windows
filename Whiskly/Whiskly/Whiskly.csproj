@@ -164,6 +164,7 @@
     <Compile Include="ShoppingList.xaml.cs">
       <DependentUpon>ShoppingList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SourceClass.cs" />
     <Compile Include="SplitView.xaml.cs">
       <DependentUpon>SplitView.xaml</DependentUpon>
     </Compile>
