@@ -27,7 +27,19 @@
                             <PivotItem Header="Note">
                                 <StackPanel x:Name="Notes_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
                                     <TextBlock Text="Add New Note" />
-                                    <TextBox PlaceholderText="recipe notes" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                    <StackPanel x:Name="IndividualNote_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
+                                        <TextBox x:Name="note_0" PlaceholderText="recipe note" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <Button Click="Add_Note_Click" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Center" Margin="0,25,0,0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" >
+                                                <TextBlock.RenderTransform>
+                                                    <CompositeTransform Rotation="45"/>
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+                                            <TextBlock Text="Add Note" Margin="0,5,0,0" />
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
                             </PivotItem>
                             <PivotItem Header="Source">

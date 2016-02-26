@@ -62,5 +62,23 @@ namespace Whiskly.Pages.Recipes
 
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
         }
+
+        private void Add_Note_Click(object sender, RoutedEventArgs e)
+        {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "addNote_click", "Add Note: from Recipe_AddNote", 0);
+
+            int stackpanelSize = this.IndividualNote_Stackpanel_Phone.Children.Count;
+
+            int currentTextbox = stackpanelSize + 1;
+
+            TextBox NoteTextbox = new TextBox();
+            NoteTextbox.Name = "Note_" + currentTextbox;
+            NoteTextbox.PlaceholderText = "recipe note";
+            NoteTextbox.TextWrapping = TextWrapping.Wrap;
+            NoteTextbox.Margin = new Thickness(0, 10, 0, 0);
+
+            this.IndividualNote_Stackpanel_Phone.Children.Add(NoteTextbox);
+        }
     }
 }
