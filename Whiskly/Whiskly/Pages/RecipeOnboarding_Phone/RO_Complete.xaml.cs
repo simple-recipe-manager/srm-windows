@@ -43,7 +43,7 @@ namespace Whiskly.Pages.RecipeOnboarding_Phone
         private void Finish_Clicked(object sender, RoutedEventArgs e)
         {
             // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "finsish_click", "Finish: from RO_Complete", 0);
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "finish_click", "Finish: from RO_Complete", 0);
 
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
         }

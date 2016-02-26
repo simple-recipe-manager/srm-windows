@@ -33,7 +33,7 @@
                             <PivotItem Header="Source">
                                 <StackPanel x:Name="Source_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
                                     <TextBlock Text="Add New Source" />
-                                    <ComboBox x:Name="Source_ComboBox" PlaceholderText="Category" Margin="0,25,0,0" FontWeight="Thin" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=Source_Stackpanel_Phone, Mode=TwoWay}" SelectedIndex="0">
+                                    <ComboBox x:Name="Source_ComboBox" Margin="0,25,0,0" PlaceholderText="Web" SelectionChanged="Source_ComboBox_SelectionChanged" FontWeight="Thin" BorderThickness="0,0,0,1" Width="{Binding ActualWidth, ElementName=Source_Stackpanel_Phone, Mode=TwoWay}">
                                         <ComboBoxItem>Web</ComboBoxItem>
                                         <ComboBoxItem>Book</ComboBoxItem>
                                     </ComboBox>
