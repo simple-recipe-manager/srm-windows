@@ -60,7 +60,67 @@ namespace Whiskly.Pages.Recipes
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "add_click", "Add: from Recipe_AddNote", 0);
 
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            // read recipeBook to memory
+            RecipeClass newRecipe = new RecipeClass();
+            List<RecipeClass> recipeBook = buildRecipeBook(newRecipe);
+            //roamingSettings.Values["recipeBook"] = recipeBook;
+
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage));
+        }
+
+        private List<RecipeClass> buildRecipeBook(RecipeClass newRecipe)
+        {
+            // read local storage to get the list of existing recipes, and store into a list in memory
+            List<RecipeClass> recipeBook = new List<RecipeClass>();
+
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            List<RecipeClass> recipeBookStore = (List<RecipeClass>)roamingSettings.Values["recipeBook"];
+            if (recipeBookStore != null)
+            {
+                recipeBook = recipeBookStore;
+            }
+
+            if (NotesSource_Pivot.SelectedIndex == 0)
+            {
+                // get the new notes from the UI and store into an object in memory
+                List<string> noteList = new List<string>();
+                foreach (TextBox t in IndividualNote_Stackpanel_Phone.Children)
+                {
+                    string note = t.Text;
+                    noteList.Add(note);
+                }
+                newRecipe.Notes = noteList;
+            }
+
+            if (NotesSource_Pivot.SelectedIndex == 1)
+            {
+                // get the new source from the UI and store into an object in memory
+                SourceClass source = new SourceClass();
+
+                if (Source_ComboBox.SelectedIndex == 0)
+                {
+                    source.Type = "Web";
+                    source.Website = WebTitle_Phone.Text;
+                    source.Address = WebAddress_Phone.Text;
+                }
+                if (Source_ComboBox.SelectedIndex == 1)
+                {
+                    source.Type = "Book";
+                    source.Title = BookTitle_Phone.Text;
+                    source.Author = BookAuthor_Phone.Text;
+                    source.Page = BookPage_Phone.Text;
+                    source.ISBN = BookISBN_Phone.Text;
+                }
+
+                newRecipe.Source = source;
+            }
+
+            // append the new note/source to the list, and return the list
+            recipeBook.Add(newRecipe);
+
+            return recipeBook;
         }
 
         private void Add_Note_Click(object sender, RoutedEventArgs e)

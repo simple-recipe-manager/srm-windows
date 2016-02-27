@@ -21,7 +21,7 @@ namespace Whiskly
         public string Temp { get; set; }
         public string TempUnit { get; set; }
         public string Image { get; set; }
-        public List<SourceClass> Source { get; set; }
+        public SourceClass Source { get; set; }
         public List<string> Notes { get; set; }
     }
 }

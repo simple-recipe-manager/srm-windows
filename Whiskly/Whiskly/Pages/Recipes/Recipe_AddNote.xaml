@@ -22,7 +22,7 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Notes &amp; Sources" FontSize="42" FontWeight="Thin" Margin="25,50,25,0" Foreground="#FFDDDDDD" TextWrapping="Wrap" />
                 <StackPanel x:Name="NotesSource_StackPanel_Phone" Orientation="Vertical" Margin="25,25,25,0">
-                    <Pivot>
+                    <Pivot x:Name="NotesSource_Pivot">
                         <Pivot.Items>
                             <PivotItem Header="Note">
                                 <StackPanel x:Name="Notes_Stackpanel_Phone" Orientation="Vertical" Margin="0,25,0,0">
@@ -51,14 +51,14 @@
                                     </ComboBox>
                                     
                                     <StackPanel x:Name="WebSource_Stackpanel" Orientation="Vertical" Margin="0,25,0,0">
-                                        <TextBox PlaceholderText="Website Title" TextWrapping="Wrap"/>
-                                        <TextBox PlaceholderText="Website Address" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox x:Name="WebTitle_Phone" PlaceholderText="Website Title" TextWrapping="Wrap"/>
+                                        <TextBox x:Name="WebAddress_Phone" PlaceholderText="Website Address" TextWrapping="Wrap" Margin="0,25,0,0"/>
                                     </StackPanel>
                                     <StackPanel x:Name="BookSource_Stackpanel" Orientation="Vertical" Margin="0,25,0,0" Visibility="Collapsed">
-                                        <TextBox PlaceholderText="Book Title" TextWrapping="Wrap"/>
-                                        <TextBox PlaceholderText="Author" TextWrapping="Wrap" Margin="0,25,0,0"/>
-                                        <TextBox PlaceholderText="Page Number" TextWrapping="Wrap" Margin="0,25,0,0"/>
-                                        <TextBox PlaceholderText="ISBN" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox x:Name="BookTitle_Phone" PlaceholderText="Book Title" TextWrapping="Wrap"/>
+                                        <TextBox x:Name="BookAuthor_Phone" PlaceholderText="Author" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox x:Name="BookPage_Phone" PlaceholderText="Page Number" TextWrapping="Wrap" Margin="0,25,0,0"/>
+                                        <TextBox x:Name="BookISBN_Phone" PlaceholderText="ISBN" TextWrapping="Wrap" Margin="0,25,0,0"/>
                                     </StackPanel>
                                 </StackPanel>
                             </PivotItem>
