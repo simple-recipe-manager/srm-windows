@@ -7,10 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Whiskly.Pages.RecipeOnboarding_Phone;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -42,6 +45,8 @@ namespace Whiskly
             Cat_ComboBox.ItemsSource = CommonCompClass.Categories;
             Cat_ComboBox.DisplayMemberPath = "category";
             Cat_ComboBox.SelectedValuePath = "cat_id";
+
+            ReadRecipeBook();
 
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeOnboarding");
@@ -97,12 +102,16 @@ namespace Whiskly
                 TemperatureTextBox.Text = "0   ";
             }
 
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            var roamingSettings = ApplicationData.Current.RoamingSettings;
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
             // read recipeBook to memory
             RecipeClass newRecipe = new RecipeClass();
             List<RecipeClass> recipeBook = buildRecipeBook(newRecipe);
-            //roamingSettings.Values["recipeBook"] = recipeBook;
+
+            string json = JsonConvert.SerializeObject(recipeBook);
+
+            WriteRecipeBook(json);
 
             // navigate back to recipe feed
             SplitView.splitviewPage.MainContentFrame.Navigate(typeof(RecipeFeed));
@@ -114,7 +123,7 @@ namespace Whiskly
             // read local storage to get the list of existing recipes, and store into a list in memory
             List<RecipeClass> recipeBook = new List<RecipeClass>();
 
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            var roamingSettings = ApplicationData.Current.RoamingSettings;
             List<RecipeClass> recipeBookStore = (List<RecipeClass>)roamingSettings.Values["recipeBook"];
             if (recipeBookStore != null)
             {
@@ -126,8 +135,10 @@ namespace Whiskly
             newRecipe.Date = DateTime.UtcNow.Ticks;
             newRecipe.Name = RecipeName_textBox_desktab.Text;
             newRecipe.Description = RecipeDescription_textBox_desktab.Text;
-            newRecipe.Category = Cat_ComboBox.SelectedItem.ToString();
-                List<string> ingredList = new List<string>();
+            string category_Selected;
+            if (Cat_ComboBox.SelectedIndex == 0) { category_Selected = "Appetizer"; } if (Cat_ComboBox.SelectedIndex == 1) { category_Selected = "Breakfast & Brunch"; } if (Cat_ComboBox.SelectedIndex == 2) { category_Selected = "Cocktails"; } if (Cat_ComboBox.SelectedIndex == 3) { category_Selected = "Desserts"; } if (Cat_ComboBox.SelectedIndex == 4) { category_Selected = "Drinks"; } if (Cat_ComboBox.SelectedIndex == 5) { category_Selected = "Main Dishes"; } if (Cat_ComboBox.SelectedIndex == 6) { category_Selected = "Pasta"; } if (Cat_ComboBox.SelectedIndex == 7) { category_Selected = "Salad"; } if (Cat_ComboBox.SelectedIndex == 8) { category_Selected = "Seafood"; } if (Cat_ComboBox.SelectedIndex == 9) { category_Selected = "Soup"; } if (Cat_ComboBox.SelectedIndex == 10) { category_Selected = "Vegetarian"; } else { category_Selected = "unknown"; }
+            newRecipe.Category = category_Selected;
+            List<string> ingredList = new List<string>();
                 foreach(TextBox t in IngredientsStackPanel.Children)
                 {
                     string ingredient = t.Text;
@@ -162,6 +173,51 @@ namespace Whiskly
             recipeBook.Add(newRecipe);
 
             return recipeBook;
+        }
+
+        StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+
+        async void WriteRecipeBook(string json)
+        {
+            Debug.WriteLine("JSON: " + json + " |");
+
+            StorageFile recipe = await localFolder.CreateFileAsync("recipeFile.txt", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(recipe, json);
+        }
+
+        async Task ReadRecipeBook()
+        {
+            try
+            {
+                // Getting JSON from file if it exists, or file not found exception if it does not  
+                StorageFile textFile = await localFolder.GetFileAsync("recipeFile.txt");
+                using (IRandomAccessStream textStream = await textFile.OpenReadAsync())
+                {
+                    // Read text stream     
+                    using (DataReader textReader = new DataReader(textStream))
+                    {
+                        //get size                       
+                        uint textLength = (uint)textStream.Size;
+                        await textReader.LoadAsync(textLength);
+                        // read it                    
+                        string jsonContents = textReader.ReadString(textLength);
+                        // deserialize back to our product!  
+                        List<RecipeClass> recipe_Current = JsonConvert.DeserializeObject<List<RecipeClass>>(jsonContents);
+                        // and show it
+
+                        foreach (RecipeClass recipe in recipe_Current)
+                        {
+                            Debug.WriteLine("Recipe name: " + recipe.Name + " |");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                // Exceptions everywhere
+                Debug.WriteLine("FUCCKCKCKCKCKC!");
+            }
         }
 
         //private async void EmptySender()
