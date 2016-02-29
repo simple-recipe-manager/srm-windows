@@ -216,7 +216,6 @@ namespace Whiskly
             {
                 Debug.WriteLine(ex.Message);
                 // Exceptions everywhere
-                Debug.WriteLine("FUCCKCKCKCKCKC!");
             }
         }
 

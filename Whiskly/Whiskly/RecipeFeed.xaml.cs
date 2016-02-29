@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,6 +12,7 @@ using Whiskly.Pages.Recipes;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -34,6 +36,7 @@ namespace Whiskly
         {
             this.InitializeComponent();
             newCard("000000003", "Title of Recipe", "Description of recipe.", null);
+            ReadRecipeBook();
 
             SearchField.Opacity = 0;
 
@@ -41,55 +44,62 @@ namespace Whiskly
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeFeed");
         }
 
-        #region Saving / Loading MyData 
-        private const string _myFileLocation = "RecipeStore.txt";
-
-        public static async Task<List<string>> GetMyData()
+        async Task ReadRecipeBook()
         {
-            // If you're saving your stuff just on this device
-            var readStream =
-                await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(_myFileLocation);
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
-            // If there is no MyData, then we haven't created our MyData file yet
-            if (readStream == null)
-                return new List<string>(); ;
-
-            DataContractSerializer stuffSerializer =
-                new DataContractSerializer(typeof(List<string>));
-
-            var setResult = (List<string>)stuffSerializer.ReadObject(readStream);
-
-            return setResult;
-        }
-
-        public static async Task<bool> SaveMyData(List<string> saveData)
-        {
             try
             {
-
-                StorageFile savedStuffFile =
-                    await ApplicationData.Current.LocalFolder.CreateFileAsync(_myFileLocation,
-                    CreationCollisionOption.ReplaceExisting);
-
-                using (Stream writeStream =
-                    await savedStuffFile.OpenStreamForWriteAsync())
+                // Getting JSON from file if it exists, or file not found exception if it does not  
+                StorageFile textFile = await localFolder.GetFileAsync("recipeFile.txt");
+                using (IRandomAccessStream textStream = await textFile.OpenReadAsync())
                 {
-                    DataContractSerializer stuffSerializer =
-                        new DataContractSerializer(typeof(List<string>));
+                    // Read text stream     
+                    using (DataReader textReader = new DataReader(textStream))
+                    {
+                        //get size                       
+                        uint textLength = (uint)textStream.Size;
+                        await textReader.LoadAsync(textLength);
+                        // read it                    
+                        string jsonContents = textReader.ReadString(textLength);
+                        // deserialize back to our product!  
+                        List<RecipeClass> recipe_Current = JsonConvert.DeserializeObject<List<RecipeClass>>(jsonContents);
+                        // and show it
 
-                    stuffSerializer.WriteObject(writeStream, saveData);
-                    await writeStream.FlushAsync();
-                    writeStream.Dispose();
+                        foreach (RecipeClass recipe in recipe_Current)
+                        {
+                            RecipeCard_Image newRecipeCard = new RecipeCard_Image();
+                            newRecipeCard.RecipeID = recipe.ID.ToString();
+                            newRecipeCard.Name = recipe.ID.ToString();
+                            newRecipeCard.RecipeTitle = recipe.Name;
+                            newRecipeCard.RecipeDescription = recipe.Description;
+                            newRecipeCard.RecipeImage = "";
+                            newRecipeCard.HorizontalAlignment = HorizontalAlignment.Center;
+                            newRecipeCard.VerticalAlignment = VerticalAlignment.Center;
+                            if (grid_desktab.Visibility == Visibility.Collapsed)
+                            {
+                                var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
+                                var size = bounds.Width;
+                                var sizeMin = size - 50;
+                                newRecipeCard.Width = sizeMin;
+
+                                Recipe_FlipView.Items.Add(newRecipeCard);
+                            }
+                            else
+                            {
+                                newRecipeCard.MinWidth = 450;
+                                Recipe_FlipView_Desktab.Items.Add(newRecipeCard);
+                            }
+                        }
+                    }
                 }
-                return true;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new Exception("ERROR: unable to save MyData", e);
-                //return false;
+                Debug.WriteLine(ex.Message);
+                // Exceptions everywhere
             }
         }
-        #endregion
 
         private void MenuHamburger_Clicked(object sender, RoutedEventArgs e)
         {
