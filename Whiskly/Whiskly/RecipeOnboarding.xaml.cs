@@ -46,8 +46,6 @@ namespace Whiskly
             Cat_ComboBox.DisplayMemberPath = "category";
             Cat_ComboBox.SelectedValuePath = "cat_id";
 
-            ReadRecipeBook();
-
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("RecipeOnboarding");
 
@@ -79,6 +77,8 @@ namespace Whiskly
             GoogleAnalytics.EasyTracker.GetTracker().SendTiming(DateTime.Now.Subtract(startTime), "Recipe Onboarding View Time", "RecipeOnboarding", "Exit By Finish");
 
             SolidColorBrush errorRed = new SolidColorBrush(Color.FromArgb(255, 220, 20, 60));
+
+            Debug.WriteLine("category Selected: " + Cat_ComboBox.SelectedIndex + " |");
 
             if (RecipeName_textBox_desktab.Text == "")
             {
@@ -118,13 +118,20 @@ namespace Whiskly
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
+        List<RecipeClass> sendRecipeBook;
+
+        public string category_Selected;
+
         private List<RecipeClass> buildRecipeBook(RecipeClass newRecipe)
         {
             // read local storage to get the list of existing recipes, and store into a list in memory
             List<RecipeClass> recipeBook = new List<RecipeClass>();
 
             var roamingSettings = ApplicationData.Current.RoamingSettings;
-            List<RecipeClass> recipeBookStore = (List<RecipeClass>)roamingSettings.Values["recipeBook"];
+
+            ReadRecipeBook();
+
+            List<RecipeClass> recipeBookStore = sendRecipeBook;
             if (recipeBookStore != null)
             {
                 recipeBook = recipeBookStore;
@@ -135,9 +142,9 @@ namespace Whiskly
             newRecipe.Date = DateTime.UtcNow.Ticks;
             newRecipe.Name = RecipeName_textBox_desktab.Text;
             newRecipe.Description = RecipeDescription_textBox_desktab.Text;
-            string category_Selected;
-            if (Cat_ComboBox.SelectedIndex == 0) { category_Selected = "Appetizer"; } if (Cat_ComboBox.SelectedIndex == 1) { category_Selected = "Breakfast & Brunch"; } if (Cat_ComboBox.SelectedIndex == 2) { category_Selected = "Cocktails"; } if (Cat_ComboBox.SelectedIndex == 3) { category_Selected = "Desserts"; } if (Cat_ComboBox.SelectedIndex == 4) { category_Selected = "Drinks"; } if (Cat_ComboBox.SelectedIndex == 5) { category_Selected = "Main Dishes"; } if (Cat_ComboBox.SelectedIndex == 6) { category_Selected = "Pasta"; } if (Cat_ComboBox.SelectedIndex == 7) { category_Selected = "Salad"; } if (Cat_ComboBox.SelectedIndex == 8) { category_Selected = "Seafood"; } if (Cat_ComboBox.SelectedIndex == 9) { category_Selected = "Soup"; } if (Cat_ComboBox.SelectedIndex == 10) { category_Selected = "Vegetarian"; } else { category_Selected = "unknown"; }
+            if (Cat_ComboBox.SelectedIndex == 0) { category_Selected = "Appetizer"; } if (Cat_ComboBox.SelectedIndex == 1) { category_Selected = "Breakfast & Brunch"; } if (Cat_ComboBox.SelectedIndex == 2) { category_Selected = "Cocktails"; } if (Cat_ComboBox.SelectedIndex == 3) { category_Selected = "Desserts"; } if (Cat_ComboBox.SelectedIndex == 4) { category_Selected = "Drinks"; } if (Cat_ComboBox.SelectedIndex == 5) { category_Selected = "Main Dishes"; } if (Cat_ComboBox.SelectedIndex == 6) { category_Selected = "Pasta"; } if (Cat_ComboBox.SelectedIndex == 7) { category_Selected = "Salad"; Debug.WriteLine("7: " + category_Selected); } if (Cat_ComboBox.SelectedIndex == 8) { category_Selected = "Seafood"; } if (Cat_ComboBox.SelectedIndex == 9) { category_Selected = "Soup"; } if (Cat_ComboBox.SelectedIndex == 10) { category_Selected = "Vegetarian"; } else { category_Selected = "unknown"; }
             newRecipe.Category = category_Selected;
+            Debug.WriteLine("7 Selected: " + category_Selected);
             List<string> ingredList = new List<string>();
                 foreach(TextBox t in IngredientsStackPanel.Children)
                 {
@@ -179,8 +186,6 @@ namespace Whiskly
 
         async void WriteRecipeBook(string json)
         {
-            Debug.WriteLine("JSON: " + json + " |");
-
             StorageFile recipe = await localFolder.CreateFileAsync("recipeFile.txt", CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(recipe, json);
         }
@@ -203,12 +208,8 @@ namespace Whiskly
                         string jsonContents = textReader.ReadString(textLength);
                         // deserialize back to our product!  
                         List<RecipeClass> recipe_Current = JsonConvert.DeserializeObject<List<RecipeClass>>(jsonContents);
-                        // and show it
-
-                        foreach (RecipeClass recipe in recipe_Current)
-                        {
-                            Debug.WriteLine("Recipe name: " + recipe.Name + " |");
-                        }
+                        // and send it
+                        sendRecipeBook = recipe_Current;
                     }
                 }
             }
