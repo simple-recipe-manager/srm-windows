@@ -102,9 +102,6 @@ namespace Whiskly
                 TemperatureTextBox.Text = "0   ";
             }
 
-            var roamingSettings = ApplicationData.Current.RoamingSettings;
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-
             // read recipeBook to memory
             RecipeClass newRecipe = new RecipeClass();
             List<RecipeClass> recipeBook = buildRecipeBook(newRecipe);
@@ -118,8 +115,6 @@ namespace Whiskly
             SplitView.splitviewPage.MainNav.IsPaneOpen = true;
         }
 
-        List<RecipeClass> sendRecipeBook;
-
         public string category_Selected;
 
         private List<RecipeClass> buildRecipeBook(RecipeClass newRecipe)
@@ -129,9 +124,30 @@ namespace Whiskly
 
             var roamingSettings = ApplicationData.Current.RoamingSettings;
 
-            ReadRecipeBook();
+            List<RecipeClass> recipe_Current;
 
-            List<RecipeClass> recipeBookStore = sendRecipeBook;
+            Task<List<RecipeClass>> readingTask = ReadRecipeBook();
+            readingTask.Start();
+
+            while (!readingTask.IsCompleted)
+            {
+                Debug.WriteLine("Task status was " + readingTask.Status.ToString());
+            }
+
+            if (!readingTask.IsFaulted)
+            {
+                recipe_Current = ReadRecipeBook().Result;
+
+                Debug.WriteLine("Task is not fualted.");
+
+            } else
+            {
+                //you're probs fucked
+                Debug.WriteLine("Task is else.");
+                recipe_Current = null;
+            }
+
+            List<RecipeClass> recipeBookStore = recipe_Current;
             if (recipeBookStore != null)
             {
                 recipeBook = recipeBookStore;
@@ -190,7 +206,7 @@ namespace Whiskly
             await FileIO.WriteTextAsync(recipe, json);
         }
 
-        async Task ReadRecipeBook()
+        async Task<List<RecipeClass>> ReadRecipeBook()
         {
             try
             {
@@ -209,7 +225,7 @@ namespace Whiskly
                         // deserialize back to our product!  
                         List<RecipeClass> recipe_Current = JsonConvert.DeserializeObject<List<RecipeClass>>(jsonContents);
                         // and send it
-                        sendRecipeBook = recipe_Current;
+                        return recipe_Current;
                     }
                 }
             }
@@ -217,6 +233,8 @@ namespace Whiskly
             {
                 Debug.WriteLine(ex.Message);
                 // Exceptions everywhere
+                Debug.WriteLine("This is null from Exception");
+                return null;
             }
         }
 
